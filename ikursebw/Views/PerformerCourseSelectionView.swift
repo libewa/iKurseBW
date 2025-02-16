@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PerformerCourseSelectionView: View {
+    @Environment(CourseSelection.self) var courseSelection
     let availableCourses: [Course]
     @State var performer1: CourseAttribute = .german
     @State var performer2: CourseAttribute = .math
@@ -22,7 +23,6 @@ struct PerformerCourseSelectionView: View {
                     Text("Mathematik").tag(CourseAttribute.math)
                     Text("Fremdsprache").tag(CourseAttribute.foreignLanguage)
                     Text("Naturwissenschaft").tag(CourseAttribute.science)
-                    
                 }
                 Picker("LK 2", selection: $performer2) {
                     if performer1 != .german {
@@ -54,6 +54,48 @@ struct PerformerCourseSelectionView: View {
                 }
             }
             NavigationLink("Weiter zur Wahl der Grundkurse", destination: GradedBasicCourseSelectionView(availableCourses: availableCourses, performerCourseSelection: [performer1, performer2, performer3]))
+                .onTapGesture {
+                    courseSelection.performerCourses[0] = switch performer1 {
+                        case .german:
+                            availableCourses.first(where: { $0.attributes.contains(.german) })!
+                        case .science:
+                            availableCourses.first(where: { $0.attributes.contains(.science) })!
+                        case .foreignLanguage:
+                            availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
+                        case .math:
+                            availableCourses.first(where: { $0.attributes.contains(.math) })!
+                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
+                            
+                    }
+                    courseSelection.performerCourses[1] = switch performer2 {
+                        case .german:
+                            availableCourses.first(where: { $0.attributes.contains(.german) })!
+                        case .science:
+                            availableCourses.first(where: { $0.attributes.contains(.science) })!
+                        case .foreignLanguage:
+                            availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
+                        case .math:
+                            availableCourses.first(where: { $0.attributes.contains(.math) })!
+                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
+                            
+                    }
+                    courseSelection.performerCourses[2] = switch performer3 {
+                        case .german:
+                            availableCourses.first(where: { $0.attributes.contains(.german) })!
+                        case .science:
+                            availableCourses.first(where: { $0.attributes.contains(.science) })!
+                        case .foreignLanguage:
+                            availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
+                        case .math:
+                            availableCourses.first(where: { $0.attributes.contains(.math) })!
+                        case .social:
+                            availableCourses.first(where: { $0.attributes.contains(.socialStudies) })!
+                        case .artMusicSports:
+                            availableCourses.first(where: { $0.attributes.contains(.artMusicSports) })!
+                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
+                            
+                    }
+                }
         }
         .navigationTitle("Wähle deine LKs")
     }
@@ -63,4 +105,5 @@ struct PerformerCourseSelectionView: View {
     let courses = try! JSONDecoder().decode([Course].self, from: try! Data(contentsOf: Bundle.main.url(forResource: "courses", withExtension: "json")!))
     PerformerCourseSelectionView(availableCourses: courses)
         .padding()
+        .environment(CourseSelection(performerCourses: [], gradedBasicCourses: [], basicCourses: []))
 }

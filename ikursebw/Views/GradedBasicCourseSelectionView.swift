@@ -23,6 +23,7 @@ let forcedBasicGradings: [[CourseAttribute]: (GradedBasicCourseType, GradedBasic
 ]
 
 struct GradedBasicCourseSelectionView: View {
+    @Environment(CourseSelection.self) var courseSelection
     let availableCourses: [Course]
     @State var forcedGradedBasicCourses: (GradedBasicCourseType, GradedBasicCourseType) = (.free, .free)
     @State var gradedBasicCourses: (Course, Course) = (Course(name: "", lessonsPerWeek: [0, 0, 0, 0], attributes: [.noPerformerCourse], field: .elective), Course(name: "", lessonsPerWeek: [0, 0, 0, 0], attributes: [.noPerformerCourse], field: .elective))
@@ -53,16 +54,7 @@ struct GradedBasicCourseSelectionView: View {
                 } else if forcedGradedBasicCourses.0 == .german {
                     Text("Deutsch").tag(availableCourses.first(where: { $0.attributes.contains(.german) })!).disabled(true)
                 } else {
-                    ForEach(availableCourses.filter({ course in
-                        //TODO: You shouldn't be able to select your performer courses as graded basic courses
-                        if !course.oralGradingAvailable() {
-                            return false
-                        }
-                        if course == gradedBasicCourses.0 {
-                            return false
-                        }
-                        return true
-                    })) { course in
+                    ForEach(availableCourses.filter(checkIfValidCourse)) { course in
                         Text(course.name).tag(course)
                     }
                 }
@@ -83,19 +75,16 @@ struct GradedBasicCourseSelectionView: View {
                 } else if forcedGradedBasicCourses.1 == .german {
                     Text("Deutsch").tag(availableCourses.first(where: { $0.attributes.contains(.german) })!).disabled(true)
                 } else {
-                    ForEach(availableCourses.filter({ course in
-                        if !course.oralGradingAvailable() {
-                            return false
-                        }
-                        if course == gradedBasicCourses.0 {
-                            return false
-                        }
-                        return true
-                    })) { course in
+                    ForEach(availableCourses.filter(checkIfValidCourse)) { course in
                         Text(course.name).tag(course)
                     }
                 }
             }
+            NavigationLink("Restliche Kurse wählen", destination: OtherCourseSelectionView(availableCourses: availableCourses))
+                .onTapGesture {
+                    courseSelection.gradedBasicCourses[0] = gradedBasicCourses.0
+                    courseSelection.gradedBasicCourses[1] = gradedBasicCourses.1
+                }
         }
     }
     
@@ -106,9 +95,29 @@ struct GradedBasicCourseSelectionView: View {
             self.forcedGradedBasicCourses = (.free, .free)
         }
     }
+    func checkIfValidCourse(course: Course) -> Bool {
+        if !course.oralGradingAvailable() {
+            return false
+        }
+        if course == gradedBasicCourses.0 {
+            return false
+        }
+        if course.attributes.contains(performerCourseSelection[0]) {
+            return false
+        }
+        if course.attributes.contains(performerCourseSelection[1]) {
+            return false
+        }
+        return true
+    }
 }
 
 #Preview {
     let courses = try! JSONDecoder().decode([Course].self, from: try! Data(contentsOf: Bundle.main.url(forResource: "courses", withExtension: "json")!))
     GradedBasicCourseSelectionView(availableCourses: courses, performerCourseSelection: [.german, .math, .foreignLanguage])
+        .environment(CourseSelection(performerCourses: [
+            Course(name: "Deutsch", lessonsPerWeek: [3, 3, 3, 3], attributes: [.german], field: .language),
+            Course(name: "Mathematik", lessonsPerWeek: [3, 3, 3, 3], attributes: [.math], field: .science),
+            Course(name: "Englisch", lessonsPerWeek: [3, 3, 3, 3], attributes: [.foreignLanguage], field: .language)
+        ], gradedBasicCourses: [], basicCourses: []))
 }
