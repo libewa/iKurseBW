@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		159E55B82D6234FD00BEBC69 /* FilePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 159E55B72D6234FD00BEBC69 /* FilePicker */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		159E556A2D6082FC00BEBC69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -70,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159E55B82D6234FD00BEBC69 /* FilePicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +126,6 @@
 			);
 			name = ikursebw;
 			packageProductDependencies = (
-				159E55B72D6234FD00BEBC69 /* FilePicker */,
 			);
 			productName = ikursebw;
 			productReference = 159E55582D6082FB00BEBC69 /* ikursebw.app */;
@@ -216,7 +210,6 @@
 			mainGroup = 159E554F2D6082FB00BEBC69;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				159E55B62D6234FD00BEBC69 /* XCRemoteSwiftPackageReference "FilePicker" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 159E55592D6082FB00BEBC69 /* Products */;
@@ -436,6 +429,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -473,6 +468,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -606,25 +603,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		159E55B62D6234FD00BEBC69 /* XCRemoteSwiftPackageReference "FilePicker" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/markrenaud/FilePicker";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		159E55B72D6234FD00BEBC69 /* FilePicker */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 159E55B62D6234FD00BEBC69 /* XCRemoteSwiftPackageReference "FilePicker" */;
-			productName = FilePicker;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 159E55502D6082FB00BEBC69 /* Project object */;
 }
