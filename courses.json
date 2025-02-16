@@ -110,7 +110,7 @@
     {
         "name": "Informatik",
         "lessonsPerWeek": [2, 2, 2, 2],
-        "attributes": ["newScience"],
+        "attributes": ["newScience", "science"],
         "field": 3
     },
     {

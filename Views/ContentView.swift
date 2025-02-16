@@ -18,4 +18,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(CourseSelection(performerCourses: [], gradedBasicCourses: [], basicCourses: []))
 }
