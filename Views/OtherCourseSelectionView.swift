@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OtherCourseSelectionView: View {
     @Environment(CourseSelection.self) var courseSelection: CourseSelection
+    @State var showFileExporter = false //TODO: Should this be a share sheet?
     let availableCourses: [Course]
     var body: some View {
         VStack {
@@ -47,6 +48,11 @@ struct OtherCourseSelectionView: View {
                      */
                 }
             }
+            Button("Wahl exportieren") { //TODO: Add systemImage
+                showFileExporter = true
+            }
+            .disabled(!courseSelection.isValid())
+            //TODO: add fileExporter
         }
         .onAppear {
             print(courseSelection.performerCourses)

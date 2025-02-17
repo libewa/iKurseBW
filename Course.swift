@@ -7,7 +7,7 @@
 
 enum CourseAttribute: String, Codable {
     case german, science, foreignLanguage, math, newScience, socialStudies, geography, history, religion, art, sports
-    case social, artMusicSports
+    case social, artMusicSports, artMusic
     case noPerformerCourse, seminarCourse
 }
 enum Field: Int, Codable {

@@ -26,16 +26,12 @@ struct GradedBasicCourseSelectionView: View {
     @Environment(CourseSelection.self) var courseSelection
     let availableCourses: [Course]
     @State var forcedGradedBasicCourses: (GradedBasicCourseType, GradedBasicCourseType) = (.free, .free)
-    @State var gradedBasicCourses: (Course, Course) = (Course(name: "", lessonsPerWeek: [0, 0, 0, 0], attributes: [.noPerformerCourse], field: .elective), Course(name: "", lessonsPerWeek: [0, 0, 0, 0], attributes: [.noPerformerCourse], field: .elective))
+    @State var gradedBasicCourses: (Course?, Course?) = (nil, nil)
     var body: some View {
         VStack {
             Text("2 deiner Basiskurse werden mündlich geprüft. Manchmal sind sie durch deine LK-Wahl vorgegeben, manchmal kannst du sie frei wählen.")
                 .onAppear {
-                    if let forcedGrading = forcedBasicGradings[[courseSelection.performerCourses[0]!.attributes[0], courseSelection.performerCourses[1]!.attributes[0], courseSelection.performerCourses[2]!.attributes[0]]] {
-                        self.forcedGradedBasicCourses = forcedGrading
-                    } else {
-                        self.forcedGradedBasicCourses = (.free, .free)
-                    }
+                    self.forcedGradedBasicCourses = forcedBasicGradings[[courseSelection.performerCourses[0]!.attributes[0], courseSelection.performerCourses[1]!.attributes[0], courseSelection.performerCourses[2]!.attributes[0]]] ?? (.free, .free)
                 }
             Picker("Mündlich geprüfter Basiskurs 1", selection: $gradedBasicCourses.0) {
                 if forcedGradedBasicCourses.0 == .social {
@@ -58,6 +54,10 @@ struct GradedBasicCourseSelectionView: View {
                     }
                 }
             }
+            .onChange(of: gradedBasicCourses) {
+                courseSelection.gradedBasicCourses[0] = gradedBasicCourses.0
+            }
+            
             Picker("Mündlich geprüfter Basiskurs 2", selection: $gradedBasicCourses.1) {
                 if forcedGradedBasicCourses.1 == .social {
                     ForEach(
@@ -79,11 +79,13 @@ struct GradedBasicCourseSelectionView: View {
                     }
                 }
             }
+            .onChange(of: gradedBasicCourses) {
+                courseSelection.gradedBasicCourses[1] = gradedBasicCourses.1
+            }
             NavigationLink("Restliche Kurse wählen", destination: OtherCourseSelectionView(availableCourses: availableCourses))
-                .onTapGesture {
-                    courseSelection.gradedBasicCourses[0] = gradedBasicCourses.0
-                    courseSelection.gradedBasicCourses[1] = gradedBasicCourses.1
-                }
+            .disabled(
+                gradedBasicCourses.0 == nil || gradedBasicCourses.1 == nil
+            )
         }
     }
     
