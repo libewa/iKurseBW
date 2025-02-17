@@ -24,7 +24,7 @@ struct PerformerCourseSelectionView: View {
                     Text("Fremdsprache").tag(CourseAttribute.foreignLanguage)
                     Text("Naturwissenschaft").tag(CourseAttribute.science)
                 }
-                .onSubmit {
+                .onChange(of: performer1) {
                     courseSelection.performerCourses[0] = switch performer1 {
                         case .german:
                             availableCourses.first(where: { $0.attributes.contains(.german) })!
@@ -34,8 +34,7 @@ struct PerformerCourseSelectionView: View {
                             availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
                         case .math:
                             availableCourses.first(where: { $0.attributes.contains(.math) })!
-                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
-                            
+                        default: nil
                     }
                 }
                 Picker("LK 2", selection: $performer2) {
@@ -52,7 +51,7 @@ struct PerformerCourseSelectionView: View {
                         Text("Naturwissenschaft").tag(CourseAttribute.science)
                     }
                 }
-                .onSubmit {
+                .onChange(of: performer2) {
                     courseSelection.performerCourses[1] = switch performer2 {
                         case .german:
                             availableCourses.first(where: { $0.attributes.contains(.german) })!
@@ -62,8 +61,7 @@ struct PerformerCourseSelectionView: View {
                             availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
                         case .math:
                             availableCourses.first(where: { $0.attributes.contains(.math) })!
-                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
-                            
+                        default: nil
                     }
                 }
                 Picker("LK 3", selection: $performer3) {
@@ -80,7 +78,7 @@ struct PerformerCourseSelectionView: View {
                     }
                     Text("Gesellschaftswissenschaft").tag(CourseAttribute.social)
                 }
-                .onSubmit {
+                .onChange(of: performer3) {
                     courseSelection.performerCourses[2] = switch performer3 {
                         case .german:
                             availableCourses.first(where: { $0.attributes.contains(.german) })!
@@ -94,8 +92,7 @@ struct PerformerCourseSelectionView: View {
                             availableCourses.first(where: { $0.attributes.contains(.socialStudies) })!
                         case .artMusicSports:
                             availableCourses.first(where: { $0.attributes.contains(.artMusicSports) })!
-                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
-                            
+                        default: nil
                     }
                 }
             }

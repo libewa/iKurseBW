@@ -32,13 +32,13 @@
     {
         "name": "Bildende Kunst",
         "lessonsPerWeek": [2, 2, 2, 2],
-        "attributes": ["art", "artMusicSports"],
+        "attributes": ["art", "artMusicSports", "artMusic"],
         "field": 1
     },
     {
         "name": "Musik",
         "lessonsPerWeek": [2, 2, 2, 2],
-        "attributes": ["art", "artMusicSports"],
+        "attributes": ["art", "artMusicSports", "artMusic"],
         "field": 1
     },
     {
