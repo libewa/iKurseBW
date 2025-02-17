@@ -27,12 +27,11 @@ struct GradedBasicCourseSelectionView: View {
     let availableCourses: [Course]
     @State var forcedGradedBasicCourses: (GradedBasicCourseType, GradedBasicCourseType) = (.free, .free)
     @State var gradedBasicCourses: (Course, Course) = (Course(name: "", lessonsPerWeek: [0, 0, 0, 0], attributes: [.noPerformerCourse], field: .elective), Course(name: "", lessonsPerWeek: [0, 0, 0, 0], attributes: [.noPerformerCourse], field: .elective))
-    var performerCourseSelection: [CourseAttribute]
     var body: some View {
         VStack {
             Text("2 deiner Basiskurse werden mündlich geprüft. Manchmal sind sie durch deine LK-Wahl vorgegeben, manchmal kannst du sie frei wählen.")
                 .onAppear {
-                    if let forcedGrading = forcedBasicGradings[performerCourseSelection] {
+                    if let forcedGrading = forcedBasicGradings[[courseSelection.performerCourses[0]!.attributes[0], courseSelection.performerCourses[1]!.attributes[0], courseSelection.performerCourses[2]!.attributes[0]]] {
                         self.forcedGradedBasicCourses = forcedGrading
                     } else {
                         self.forcedGradedBasicCourses = (.free, .free)
@@ -102,10 +101,7 @@ struct GradedBasicCourseSelectionView: View {
         if course == gradedBasicCourses.0 {
             return false
         }
-        if course.attributes.contains(performerCourseSelection[0]) {
-            return false
-        }
-        if course.attributes.contains(performerCourseSelection[1]) {
+        if courseSelection.performerCourses.contains(course) {
             return false
         }
         return true
@@ -114,7 +110,7 @@ struct GradedBasicCourseSelectionView: View {
 
 #Preview {
     let courses = try! JSONDecoder().decode([Course].self, from: try! Data(contentsOf: Bundle.main.url(forResource: "courses", withExtension: "json")!))
-    GradedBasicCourseSelectionView(availableCourses: courses, performerCourseSelection: [.german, .math, .foreignLanguage])
+    GradedBasicCourseSelectionView(availableCourses: courses)
         .environment(CourseSelection(performerCourses: [
             Course(name: "Deutsch", lessonsPerWeek: [3, 3, 3, 3], attributes: [.german], field: .language),
             Course(name: "Mathematik", lessonsPerWeek: [3, 3, 3, 3], attributes: [.math], field: .science),

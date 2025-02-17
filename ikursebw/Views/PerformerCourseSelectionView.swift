@@ -10,9 +10,9 @@ import SwiftUI
 struct PerformerCourseSelectionView: View {
     @Environment(CourseSelection.self) var courseSelection
     let availableCourses: [Course]
-    @State var performer1: CourseAttribute = .german
-    @State var performer2: CourseAttribute = .math
-    @State var performer3: CourseAttribute = .foreignLanguage
+    @State var performer1: CourseAttribute? = nil
+    @State var performer2: CourseAttribute? = nil
+    @State var performer3: CourseAttribute? = nil
     var body: some View {
         VStack(alignment: .leading) {
             Text("Zuerst wähle deine 3 LKs. LKs werden auf erhöhtem Niveau, mit 5 Wochenstunden, unterrichtet. Außerdem sind sie deine schriftlichen Prüfungsfächer.")
@@ -23,6 +23,20 @@ struct PerformerCourseSelectionView: View {
                     Text("Mathematik").tag(CourseAttribute.math)
                     Text("Fremdsprache").tag(CourseAttribute.foreignLanguage)
                     Text("Naturwissenschaft").tag(CourseAttribute.science)
+                }
+                .onSubmit {
+                    courseSelection.performerCourses[0] = switch performer1 {
+                        case .german:
+                            availableCourses.first(where: { $0.attributes.contains(.german) })!
+                        case .science:
+                            availableCourses.first(where: { $0.attributes.contains(.science) })!
+                        case .foreignLanguage:
+                            availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
+                        case .math:
+                            availableCourses.first(where: { $0.attributes.contains(.math) })!
+                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
+                            
+                    }
                 }
                 Picker("LK 2", selection: $performer2) {
                     if performer1 != .german {
@@ -36,6 +50,20 @@ struct PerformerCourseSelectionView: View {
                     }
                     if performer1 != .science {
                         Text("Naturwissenschaft").tag(CourseAttribute.science)
+                    }
+                }
+                .onSubmit {
+                    courseSelection.performerCourses[1] = switch performer2 {
+                        case .german:
+                            availableCourses.first(where: { $0.attributes.contains(.german) })!
+                        case .science:
+                            availableCourses.first(where: { $0.attributes.contains(.science) })!
+                        case .foreignLanguage:
+                            availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
+                        case .math:
+                            availableCourses.first(where: { $0.attributes.contains(.math) })!
+                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
+                            
                     }
                 }
                 Picker("LK 3", selection: $performer3) {
@@ -52,33 +80,7 @@ struct PerformerCourseSelectionView: View {
                     }
                     Text("Gesellschaftswissenschaft").tag(CourseAttribute.social)
                 }
-            }
-            NavigationLink("Weiter zur Wahl der Grundkurse", destination: GradedBasicCourseSelectionView(availableCourses: availableCourses, performerCourseSelection: [performer1, performer2, performer3]))
-                .onTapGesture {
-                    courseSelection.performerCourses[0] = switch performer1 {
-                        case .german:
-                            availableCourses.first(where: { $0.attributes.contains(.german) })!
-                        case .science:
-                            availableCourses.first(where: { $0.attributes.contains(.science) })!
-                        case .foreignLanguage:
-                            availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
-                        case .math:
-                            availableCourses.first(where: { $0.attributes.contains(.math) })!
-                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
-                            
-                    }
-                    courseSelection.performerCourses[1] = switch performer2 {
-                        case .german:
-                            availableCourses.first(where: { $0.attributes.contains(.german) })!
-                        case .science:
-                            availableCourses.first(where: { $0.attributes.contains(.science) })!
-                        case .foreignLanguage:
-                            availableCourses.first(where: { $0.attributes.contains(.foreignLanguage) })!
-                        case .math:
-                            availableCourses.first(where: { $0.attributes.contains(.math) })!
-                        default: Course(name: "ERROR", lessonsPerWeek: [0, 0, 0, 0], attributes: [], field: .sports)
-                            
-                    }
+                .onSubmit {
                     courseSelection.performerCourses[2] = switch performer3 {
                         case .german:
                             availableCourses.first(where: { $0.attributes.contains(.german) })!
@@ -96,6 +98,11 @@ struct PerformerCourseSelectionView: View {
                             
                     }
                 }
+            }
+            NavigationLink("Weiter zur Wahl der Grundkurse", destination: GradedBasicCourseSelectionView(availableCourses: availableCourses))
+                .disabled(
+                    performer1 == nil || performer2 == nil || performer3 == nil
+                )
         }
         .navigationTitle("Wähle deine LKs")
     }
