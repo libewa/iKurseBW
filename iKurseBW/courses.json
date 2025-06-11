@@ -1,0 +1,176 @@
+[
+    {
+        "name": "Deutsch",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["german"],
+        "field": 1
+    },
+    {
+        "name": "Englisch",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["foreignLanguage"],
+        "field": 1
+    },
+    {
+        "name": "Französisch",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["foreignLanguage"],
+        "field": 1
+    },
+    {
+        "name": "Latein",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["foreignLanguage"],
+        "field": 1
+    },
+    {
+        "name": "Altgriechisch",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["foreignLanguage"],
+        "field": 1
+    },
+    {
+        "name": "Bildende Kunst",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["art", "artMusicSports", "artMusic"],
+        "field": 1
+    },
+    {
+        "name": "Musik",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["art", "artMusicSports", "artMusic"],
+        "field": 1
+    },
+    {
+        "name": "Ethik",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["religion", "social"],
+        "field": 2
+    },
+    {
+        "name": "Jüdische Religionslehre",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["religion", "social"],
+        "field": 2
+    },
+    {
+        "name": "Katholische Religionslehre",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["religion", "noPerformerCourse", "social"],
+        "field": 2
+    },
+    {
+        "name": "Evangelische Religionslehre",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["religion", "noPerformerCourse", "social"],
+        "field": 2
+    },
+    {
+        "name": "Geschichte",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["history", "social"],
+        "field": 2
+    },
+    {
+        "name": "Geographie",
+        "lessonsPerWeek": [2, 0, 0, 2],
+        "attributes": ["geography", "social"],
+        "field": 2
+    },
+    {
+        "name": "Gemeinschaftskunde",
+        "lessonsPerWeek": [0, 2, 2, 0],
+        "attributes": ["socialStudies", "social"],
+        "field": 2
+    },
+    {
+        "name": "Mathematik",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["math"],
+        "field": 3
+    },
+    {
+        "name": "Biologie",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["science"],
+        "field": 3
+    },
+    {
+        "name": "Chemie",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["science"],
+        "field": 3
+    },
+    {
+        "name": "Physik",
+        "lessonsPerWeek": [3, 3, 3, 3],
+        "attributes": ["science"],
+        "field": 3
+    },
+    {
+        "name": "Informatik",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["newScience", "science"],
+        "field": 3
+    },
+    {
+        "name": "Sport",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["sports", "artMusicSports"],
+        "field": 4
+    },
+    {
+        "name": "Literatur und Theater",
+        "lessonsPerWeek": [2, 2, 0, 0],
+        "attributes": ["noPerformerCourse"],
+        "field": 1
+    },
+    {
+        "name": "Philosophie",
+        "lessonsPerWeek": [2, 2, 0, 0],
+        "attributes": ["noPerformerCourse"],
+        "field": 2
+    },
+    {
+        "name": "Psychologie",
+        "lessonsPerWeek": [0, 0, 2, 2],
+        "attributes": ["noPerformerCourse"],
+        "field": 2
+    },
+    {
+        "name": "Literatur",
+        "lessonsPerWeek": [0, 0, 2, 2],
+        "attributes": ["noPerformerCourse"],
+        "field": 1
+    },
+    {
+        "name": "Französisch (spätbeginnend)",
+        "lessonsPerWeek": [3, 3, 0, 0],
+        "attributes": ["noPerformerCourse"],
+        "field": 1
+    },
+    {
+        "name": "Vertiefungskurs Mathematik",
+        "lessonsPerWeek": [2, 2, 2, 2],
+        "attributes": ["noPerformerCourse"],
+        "field": 3
+    },
+    {
+        "name": "Besondere Lernleistung AF1",
+        "lessonsPerWeek": [3, 3, 0, 0],
+        "attributes": ["noPerformerCourse", "seminarCourse"],
+        "field": 1
+    },
+    {
+        "name": "Besondere Lernleistung AF2",
+        "lessonsPerWeek": [3, 3, 0, 0],
+        "attributes": ["noPerformerCourse", "seminarCourse"],
+        "field": 2
+    },
+    {
+        "name": "Besondere Lernleistung AF3",
+        "lessonsPerWeek": [3, 3, 0, 0],
+        "attributes": ["noPerformerCourse", "seminarCourse"],
+        "field": 3
+    }
+]
