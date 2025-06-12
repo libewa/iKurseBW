@@ -4,7 +4,7 @@ enum CourseSelection {
     case performer, basic, gradedBasic, none
 }
 
-struct FullCourseSelectionLine: View {
+struct FullCourseSelectionLineStack: View {
     @Environment(CourseSelection.self) var courseSelection
     let course: Course
     @State var selected = CourseSelection.none

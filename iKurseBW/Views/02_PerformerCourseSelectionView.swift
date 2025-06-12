@@ -28,11 +28,12 @@ struct PerformerCourseSelectionView: View {
                 )
             }
         }
+        .padding()
+        .navigationTitle("Leistungskurse (\(index + 1)/3)")
     }
 }
 
 #Preview {
     PerformerCourseSelectionView(index: 0)
         .environment(CourseSelection())
-        .padding()
 }

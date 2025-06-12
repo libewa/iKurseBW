@@ -13,7 +13,6 @@ struct ContentView: View {
         NavigationStack {
             GreetingView()
         }
-        .padding()
         .environment(selection)
     }
 }

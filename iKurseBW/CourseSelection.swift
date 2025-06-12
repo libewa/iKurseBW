@@ -36,4 +36,47 @@ import SwiftUI
             forced.append(.social)
         }
     }
+
+    var missingMandatoryCourses: [CourseAttribute]? {
+        var missing: [CourseAttribute] = []
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.german) }) {
+            missing.append(.german)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.math) }) {
+            missing.append(.math)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.foreignLanguage) }) {
+            missing.append(.foreignLanguage)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.science) }) {
+            missing.append(.science)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.history) }) {
+            missing.append(.history)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.socialStudies) }) {
+            missing.append(.socialStudies)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.geography) }) {
+            missing.append(.geography)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.religion) }) {
+            missing.append(.religion)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.artMusic) }) {
+            missing.append(.artMusic)
+        }
+        if !self.allSelectedCourses.contains(where: { $0.attributes.contains(.sports) }) {
+            missing.append(.sports)
+        }
+        if missing.isEmpty {
+            return nil
+        }
+        return missing
+    }
+
+    var isValid: Bool {
+        guard !performerCourses.contains(nil) else { return false }
+        guard !gradedBasicCourses.contains(nil) else { return false }
+    }
 }

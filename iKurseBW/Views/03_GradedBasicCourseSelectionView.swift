@@ -18,11 +18,12 @@ struct GradedBasicCourseSelectionView: View {
                 courseSelection.gradedBasicCourses.contains(nil)
             )
         }
+        .padding()
+        .navigationTitle("Geprüfte Basiskurse")
     }
 }
 
 #Preview {
     GradedBasicCourseSelectionView()
         .environment(CourseSelection())
-        .padding()
 }

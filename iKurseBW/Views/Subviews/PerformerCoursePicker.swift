@@ -34,5 +34,4 @@ struct PerformerCoursePicker: View {
     @Previewable @State var performers = InlineArray<3, Course?>(repeating: nil)
     PerformerCoursePicker(index: 0, titleKey: "LK 1")
         .environment(CourseSelection())
-        .padding()
 }

@@ -5,10 +5,27 @@
 //  Created by Linus Warnatz on 16.02.25.
 //
 
-enum CourseAttribute: String, Codable {
-    case german, science, foreignLanguage, math, newScience, socialStudies, geography, history, religion, art, sports
-    case social, artMusicSports, artMusic
-    case noPerformerCourse, seminarCourse
+import SwiftUI
+
+enum CourseAttribute: LocalizedStringKey, Codable {
+    case german             = "Deutsch"
+    case science            = "Naturwissenschaft"
+    case foreignLanguage    = "Fremdsprache"
+    case math               = "Mathematik"
+    case newScience         = "Zweite Fremdsprache oder Naturwissenschaft"
+    case socialStudies      = "Gemeinschaftskunde"
+    case geography          = "Erdkunde"
+    case history            = "Geschichte"
+    case religion           = "Religion"
+    case art                = "Kunst"
+    case sports             = "Sport"
+
+    case social             = "Gesellschaftswissenschaften"
+    case artMusicSports     = "Kunst, Musik oder Sport"
+    case artMusic           = "Kunst oder Musik"
+
+    case noPerformerCourse  = "Wahlpflichtfach"
+    case seminarCourse      = "Seminarkurs"
 }
 enum Field: Int, Codable {
     case language = 1
@@ -43,7 +60,7 @@ struct Course: Codable, Equatable, Hashable, Identifiable {
     }
 
     func isValidPerformerCourse(performers: [Course?]) -> Bool {
-        if (performers[0] != nil && performers[1] != nil && performers[2] == nil) && !performers.contains(where: { $0.attributes.contains(where: { $0 == .german || $0 == .math })})  {
+        if (performers[0] != nil && performers[1] != nil && performers[2] == nil) && !performers.contains(where: { $0?.attributes.contains(where: { $0 == .german || $0 == .math }) ?? false})  {
             // Third performer must be German, Math or Social
             if !($0.attributes.contains(.german) || $0.attributes.contains(.math) || $0.attributes.contains(.social)) {
                 return false
@@ -58,6 +75,6 @@ struct Course: Codable, Equatable, Hashable, Identifiable {
         if performers.contains(self) {
             return false
         }
-        if 
+        return true
     }
 }
