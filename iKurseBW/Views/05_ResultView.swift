@@ -27,13 +27,14 @@ struct ResultView: View {
                      )*/
                 }
             }
+            Text("\(courseSelection.totalSemesters) Kurse gwählt")
+                .foregroundStyle(courseSelection.totalSemesters < 44 ? .orange : .primary)
             HStack {
                 Text("Summe")
                 Spacer()
                 Text("\(courseSelection.lessonsPerWeek[0]) \(courseSelection.lessonsPerWeek[1]) \(courseSelection.lessonsPerWeek[2]) \(courseSelection.lessonsPerWeek[3])")
                 .font(.system(size: 12, weight: .bold, design: .monospaced))
             }
-            .foregroundStyle(courseSelection.totalSemesters < 44 ? .orange : .primary)
         }
         .navigationTitle("Deine Kurswahl")
     }
