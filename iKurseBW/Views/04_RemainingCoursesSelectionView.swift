@@ -12,6 +12,7 @@ struct RemainingCoursesSelectionView: View {
     var body: some View {
         List {
             Section {
+                //TODO: Have tvOS scroll up here even though it's not a button (low priority, just for fun)
                 CourseSelectionWarningView(validity: courseSelection.validity)
                 Text("\(courseSelection.totalSemesters) Kurse gwählt")
                 HStack {

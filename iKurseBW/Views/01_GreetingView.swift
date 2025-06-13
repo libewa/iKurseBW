@@ -41,6 +41,7 @@ struct GreetingView: View {
                     systemImage: "questionmark.circle"
                 )
             }
+            #if !os(tvOS)
             Text(
                 "Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl."
             )
@@ -54,6 +55,7 @@ struct GreetingView: View {
                     "\(courseSelection.availableCourses.count) Kurse verfügbar"
                 )
             }
+            #endif
             NavigationLink(
                 "Weiter zur LK-Wahl",
                 destination: PerformerCourseSelectionView(
@@ -77,6 +79,7 @@ struct GreetingView: View {
             }
         }
 #endif
+#if !os(tvOS)
         .fileImporter(
             isPresented: $fileImportPresented,
             allowedContentTypes: [.json]
@@ -104,7 +107,8 @@ struct GreetingView: View {
                 Text(error.localizedDescription)
             }
         )
-#if !os(macOS)
+        #endif
+#if !os(macOS) && !os(tvOS)
         .navigationBarTitleDisplayMode(.inline)
 #endif
     }

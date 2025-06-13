@@ -11,6 +11,7 @@ struct ResultView: View {
     @Environment(CourseSelection.self) var courseSelection
     var body: some View {
         List {
+            //TODO: Make this scrollable on tvOS (low priority, just for fun)
             Section {
                 ForEach(courseSelection.allSelectedCourses) { course in
                     CourseTableLine(course: course, locked: true)
