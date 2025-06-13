@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+internal import UniformTypeIdentifiers
 
 struct GreetingView: View {
-    let availableCourses: [Course] = try! JSONDecoder().decode([Course].self, from: try! Data(contentsOf: Bundle.main.url(forResource: "courses", withExtension: "json")!))
-    @State var title = String(localized: "Willkommen bei iKurseBW!")
+    @Environment(CourseSelection.self) var courseSelection
+    @State var fileImportPresented = false
+    @State var showEasterEgg = false
+    @State var error: Error? = nil
+    @State var showError = false
     var body: some View {
         Form {
             Text("""
@@ -19,23 +23,51 @@ struct GreetingView: View {
             Die App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub oder per E-Mail.
             Bitte beachte, dass die App keine offizielle App des Kultusministeriums ist und daher keine Garantie für die Richtigkeit der Informationen gegeben werden kann.
             """)
-            Link("App-Quellcode auf GitHub", destination: URL(string: "https://github.com/libewa/iKurseBW")!)
-            Link("Offizielle Informationen des Kultusministeriums", destination: URL(string: "https://km.baden-wuerttemberg.de/de/schule/gymnasium/abitur-und-oberstufe")!)
-            /* Text("Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl.") */
-            //TODO: Implement file selection for courses
-            Text("Zuerst wählen wir deine drei Leistungskurse (LKs).")
+            Link(destination: URL(string: "https://github.com/libewa/iKurseBW")!) {
+                Label("App-Quellcode auf GitHub", systemImage: "network")
+            }
+            Link(destination: URL(string: "https://km.baden-wuerttemberg.de/de/schule/gymnasium/abitur-und-oberstufe")!) {
+                Label("Offizielle Informationen des Kultusministeriums", systemImage: "questionmark.circle")
+            }
+            Text("Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl.")
+            
+            HStack {
+                Button("Datei auswählen", systemImage: "arrow.down.document") {
+                    fileImportPresented = true
+                }
+                Spacer()
+                Text("\(courseSelection.availableCourses.count) Kurse verfügbar")
+            }
             NavigationLink("Weiter zur LK-Wahl", destination: PerformerCourseSelectionView(index: 0, previousSelection: nil))
         }
-        .navigationTitle(title)
+        .navigationTitle("Willkommen bei iKurseBW!")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Image(systemName: "rainbow")
                     .symbolRenderingMode(.multicolor)
                     .onTapGesture {
-                        title = String(localized: "Be who you are!")
+                        withAnimation {
+                            showEasterEgg.toggle()
+                        }
                     }
+                    .symbolEffect(.variableColor, isActive: showEasterEgg)
             }
         }
+        .fileImporter(isPresented: $fileImportPresented, allowedContentTypes: [.json]) { result in
+            do {
+                let file = try result.get()
+                let data = try Data(contentsOf: file)
+                let courses = try JSONDecoder().decode([Course].self, from: data)
+                courseSelection.availableCourses = courses
+            } catch {
+                self.error = error
+            }
+        }
+        .alert("Ein Fehler ist aufgetreten", isPresented: $showError, presenting: error, actions: { _ in
+            Button("OK", role: .cancel) { }
+        }, message: { error in
+            Text(error.localizedDescription)
+        })
         .navigationBarTitleDisplayMode(.inline)
     }
         
@@ -44,5 +76,6 @@ struct GreetingView: View {
 #Preview {
     NavigationStack {
         GreetingView()
+            .environment(CourseSelection())
     }
 }

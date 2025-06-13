@@ -7,11 +7,24 @@
 
 import SwiftUI
 
-@Observable class CourseSelection {
-    let availableCourses: [Course]
+@Observable class CourseSelection: Codable {
+    var availableCourses: [Course]
     var performerCourses: [Course?]
     var gradedBasicCourses: [Course?]
     var basicCourses: [Course]
+    
+    var languageCourses: [Course] {
+        availableCourses.filter { $0.field == .language }
+    }
+    var socialCourses: [Course] {
+        availableCourses.filter { $0.field == .social }
+    }
+    var scienceCourses: [Course] {
+        availableCourses.filter { $0.field == .science }
+    }
+    var sportsCourses: [Course] {
+        availableCourses.filter { $0.field == .sports }
+    }
     
     var allSelectedCourses: [Course] {
         performerCourses.compactMap({$0}) + gradedBasicCourses.compactMap({$0}) + basicCourses
@@ -101,5 +114,10 @@ import SwiftUI
             }
         }
     }
+    
+    var export: String {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(self)
+        return String(data: data, encoding: .utf8)!
+    }
 }
-

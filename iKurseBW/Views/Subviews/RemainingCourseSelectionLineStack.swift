@@ -48,6 +48,8 @@ struct RemainingCourseSelectionLineStack: View {
                 selected = .performer
             } else if courseSelection.gradedBasicCourses.contains(where: { $0?.name == course.name }) {
                 selected = .gradedBasic
+            } else if courseSelection.availableCourses.filter({ $0.attributes.contains(course.attributes[0]) }).count == 1 {
+                selected = .basic
             }
         }
         .onChange(of: selected) {

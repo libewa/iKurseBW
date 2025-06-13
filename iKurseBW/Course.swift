@@ -71,7 +71,6 @@ enum Field: Int, Codable {
     case social = 2
     case science = 3
     case sports = 4
-    case elective = 5
 }
 
 /// Represents a single course, with its name, lessons per week for each semester, and attributes.
