@@ -9,8 +9,10 @@ import SwiftUI
 
 struct GradedBasicCourseSelectionView: View {
     @Environment(CourseSelection.self) var courseSelection
+    let lastPerformerCourse: Course
     var body: some View {
-        VStack {
+        Form {
+            Text("Nun wähle deine geprüften Basiskurse. Einer oder zwei können durch deine Leistungsfachwahl vorgegeben sein.")
             GradedBasicCoursePicker(index: 0)
             GradedBasicCoursePicker(index: 1)
             NavigationLink("Verbleibende Kurse wählen", destination: RemainingCoursesSelectionView())
@@ -18,12 +20,16 @@ struct GradedBasicCourseSelectionView: View {
                 courseSelection.gradedBasicCourses.contains(nil)
             )
         }
-        .padding()
+        .onAppear {
+            courseSelection.performerCourses[2] = lastPerformerCourse
+        }
         .navigationTitle("Geprüfte Basiskurse")
     }
 }
 
 #Preview {
-    GradedBasicCourseSelectionView()
-        .environment(CourseSelection())
+    NavigationStack {
+        GradedBasicCourseSelectionView(lastPerformerCourse: Course(name: "Mathematik", lessonsPerWeek: [3,3,3,3], attributes: [.math], field: .science))
+            .environment(CourseSelection())
+    }
 }

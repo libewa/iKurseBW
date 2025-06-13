@@ -1,29 +1,45 @@
 import SwiftUI
 
-enum CourseSelection {
+enum CourseGradingType {
     case performer, basic, gradedBasic, none
 }
 
-struct FullCourseSelectionLineStack: View {
+struct RemainingCourseSelectionLineStack: View {
     @Environment(CourseSelection.self) var courseSelection
     let course: Course
-    @State var selected = CourseSelection.none
+    @State var selected = CourseGradingType.none
     var body: some View {
         HStack {
             Text(course.name)
-            Spacer()
-            Picker("", selection: $selected) {
-                Label("Leistungsfach", systemImage: "graduationcap.fill").tag(CourseSelection.performer).labelStyle(.iconOnly)
-                Label("Basisfach", systemImage: "book.closed.fill").tag(CourseSelection.basic).labelStyle(.iconOnly)
-                Label("Basisfach mündlich geprüft", systemImage: "inset.filled.rectangle.and.person.filled").tag(CourseSelection.gradedBasic).labelStyle(.iconOnly)
-                Label("Nicht gewählt", systemImage: "slash.circle.fill").tag(CourseSelection.none).labelStyle(.iconOnly)
+            if selected == .performer {
+                Spacer()
+                Label("Leistungsfach", systemImage: "graduationcap.fill").tag(CourseGradingType.performer).labelStyle(.iconOnly)
+            } else if selected == .gradedBasic {
+                Spacer()
+                Label("Basisfach mündlich geprüft", systemImage: "inset.filled.rectangle.and.person.filled").tag(CourseGradingType.gradedBasic).labelStyle(.iconOnly)
+            } else {
+                Button {
+                    withAnimation {
+                        if selected == .basic {
+                            selected = .none
+                        } else {
+                            selected = .basic
+                        }
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+                        if selected == .basic {
+                            Label("Basisfach", systemImage: "book.closed.fill").tag(CourseGradingType.basic).labelStyle(.iconOnly)
+                        } else {
+                            Label("Nicht gewählt", systemImage: "slash.circle").tag(CourseGradingType.none).labelStyle(.iconOnly)
+                        }
+                    }
+                }
+                .disabled(
+                    courseSelection.availableCourses.filter { $0.attributes.contains(course.attributes[0]) }.count == 1
+                )
             }
-            .pickerStyle(.segmented)
-            .disabled(
-                selected == .performer || selected == .gradedBasic
-            )
-
-            Spacer()
             Text("\(course.lessonsPerWeek[0]) \(course.lessonsPerWeek[1]) \(course.lessonsPerWeek[2]) \(course.lessonsPerWeek[3])")
                 .font(.system(size: 12, weight: .bold, design: .monospaced))
         }
@@ -46,4 +62,9 @@ struct FullCourseSelectionLineStack: View {
             }
         }
     }
+}
+
+#Preview {
+    RemainingCourseSelectionLineStack(course: Course(name: "Mathematik", lessonsPerWeek: [3,3,3,3], attributes: [.math], field: .science), selected: .none)
+        .environment(CourseSelection())
 }

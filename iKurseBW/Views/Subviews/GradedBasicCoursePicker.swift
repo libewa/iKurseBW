@@ -11,14 +11,18 @@ struct GradedBasicCoursePicker: View {
     @State var selectedCourse = ""
     @Environment(CourseSelection.self) var courseSelection
     let index: Int
+    var german: String { courseSelection.availableCourses.first(where: { $0.attributes.contains(.german) })?.name ?? "Deutsch" }
+    var math: String { courseSelection.availableCourses.first(where: { $0.attributes.contains(.math) })?.name ?? "Mathematik" }
     var body: some View {
         Picker("Mündlich geprüfter Basiskurs \(index + 1)", selection: $selectedCourse) {
-            Text("Bitte auswählen!").tag("")
+            if selectedCourse == "" {
+                Text("Bitte auswählen!", comment: "The default picker element when no course is selected").tag("").disabled(true)
+            }
             if let forced = courseSelection.forcedBasicGradings[safe: index] {
                 if forced == .german {
-                    Text("Deutsch").tag("Deutsch")
+                    Text(german).tag(german)
                 } else if forced == .math {
-                    Text("Mathematik").tag("Mathematik")
+                    Text(math).tag(math)
                 } else if forced == .social {
                     ForEach(courseSelection.availableCourses.filter({ $0.attributes.contains(.social) })) { course in
                         Text(course.name).tag(course.name)
@@ -41,6 +45,7 @@ struct GradedBasicCoursePicker: View {
                 $0.name == selectedCourse
             }) ?? nil
         }
+    }
 }
 
 #Preview {

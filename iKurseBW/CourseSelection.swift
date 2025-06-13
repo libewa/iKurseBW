@@ -1,5 +1,5 @@
 //
-//  CourseSelectin.swift
+//  CourseSelection.swift
 //  iKurseBW
 //
 //  Created by Linus Warnatz on 11.06.25.
@@ -21,20 +21,25 @@ import SwiftUI
         self.performerCourses = [nil, nil, nil]
         self.gradedBasicCourses = [nil, nil]
         self.basicCourses = []
-        self.availableCourses = try! JSONDecoder().decode([Course].self, from: try! Data(contentsOf: Bundle.main.url(forResource: "courses", withExtension: "json")!))
+        
+        let decoder = JSONDecoder()
+        let coursesData = try! Data(contentsOf: Bundle.main.url(forResource: "courses", withExtension: "json")!)
+        print(String(data: coursesData, encoding: .utf8)!)
+        self.availableCourses = try! decoder.decode([Course].self, from: coursesData)
     }
 
     var forcedBasicGradings: [CourseAttribute] {
         var forced: [CourseAttribute] = []
-        if !self.performerCourses.contains(where: { $0.attributes.contains(.german) }) {
+        if !self.performerCourses.contains(where: { $0?.attributes.contains(.german) ?? false }) {
             forced.append(.german)
         }
-        if !self.performerCourses.contains(where: { $0.attributes.contains(.math) }) {
+        if !self.performerCourses.contains(where: { $0?.attributes.contains(.math) ?? false }) {
             forced.append(.math)
         }
-        if !self.performerCourses.contains(where: { $0.attributes.contains(.social) }) {
+        if !self.performerCourses.contains(where: { $0?.attributes.contains(.social) ?? false }) {
             forced.append(.social)
         }
+        return forced
     }
 
     var missingMandatoryCourses: [CourseAttribute]? {
@@ -78,5 +83,23 @@ import SwiftUI
     var isValid: Bool {
         guard !performerCourses.contains(nil) else { return false }
         guard !gradedBasicCourses.contains(nil) else { return false }
+        guard missingMandatoryCourses == nil else { return false }
+        return true
+    }
+    
+    var availablePerformerCourses: [Course] {
+        self.availableCourses.compactMap { $0 }.filter { $0.isValidPerformerCourse(performers: self.performerCourses) }
+    }
+    
+    func addMissingUnambiguousCourses() {
+        guard let missing = self.missingMandatoryCourses else { return }
+        for attribute in missing {
+            let candidates = self.availableCourses.filter { $0.attributes.contains(attribute) }
+            if candidates.count == 1 {
+                let course = candidates[0]
+                self.basicCourses.append(course)
+            }
+        }
     }
 }
+

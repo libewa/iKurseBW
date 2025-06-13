@@ -9,8 +9,9 @@ import SwiftUI
 
 struct GreetingView: View {
     let availableCourses: [Course] = try! JSONDecoder().decode([Course].self, from: try! Data(contentsOf: Bundle.main.url(forResource: "courses", withExtension: "json")!))
+    @State var title = String(localized: "Willkommen bei iKurseBW!")
     var body: some View {
-        VStack(alignment: .leading) {
+        Form {
             Text("""
             Hallo, und willkommen bei iKurseBW!
             Diese App hilft dir bei der Wahl deiner Kurse für die Kursstufe des allgemeinbildenden Gymnasiums (Klasse 11 und 12 oder 12 und 13).
@@ -23,14 +24,25 @@ struct GreetingView: View {
             /* Text("Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl.") */
             //TODO: Implement file selection for courses
             Text("Zuerst wählen wir deine drei Leistungskurse (LKs).")
-            NavigationLink("Weiter zur LK-Wahl", destination: PerformerCourseSelectionView(index: 0))
+            NavigationLink("Weiter zur LK-Wahl", destination: PerformerCourseSelectionView(index: 0, previousSelection: nil))
         }
-        .padding()
-        .navigationTitle("Willkommen bei iKurseBW!")
+        .navigationTitle(title)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Image(systemName: "rainbow")
+                    .symbolRenderingMode(.multicolor)
+                    .onTapGesture {
+                        title = String(localized: "Be who you are!")
+                    }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
     }
         
 }
 
 #Preview {
-    GreetingView()
+    NavigationStack {
+        GreetingView()
+    }
 }

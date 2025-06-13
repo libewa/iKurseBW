@@ -13,7 +13,20 @@ struct RemainingCoursesSelectionView: View {
         VStack {
             List {
                 ForEach(courseSelection.availableCourses) { course in
-                    FullCourseSelectionLineStack(course: course)
+                    RemainingCourseSelectionLineStack(course: course)
+                }
+            }
+            List {
+                if let missing = courseSelection.missingMandatoryCourses {
+                    Label("Fehlende Kurse", systemImage: "xmark.circle")
+                    .foregroundColor(.red)
+                    ForEach(missing, id: \.self) { courseType in
+                        Text(courseType.localized())
+                    }
+                } else {
+                    Label("Alle Kurse ausgewählt!", systemImage: "checkmark.circle")
+                        .foregroundColor(.green)
+                    //TODO: Export selected courses
                 }
                 HStack {
                     Text("Summe")
@@ -22,23 +35,16 @@ struct RemainingCoursesSelectionView: View {
                         .font(.system(size: 12, weight: .bold, design: .monospaced))
                 }
             }
-            List {
-                if let missing = courseSelection.missingCourses {
-                    Label("Fehlende Kurse: \(missing.joined(separator: ", "))", systemImage: "xmark.circle")
-                    .foregroundColor(.red)
-                    ForEach(missing, id: \.self) { courseType in
-                        Text(courseType.rawValue)
-                    }
-                } else {
-                    Label("Alle Kurse ausgewählt!", systemImage: "checkmark.circle")
-                        .foregroundColor(.green)
-                    //TODO: Export selected courses
-                }
-            }
+        }
+        .onAppear {
+            courseSelection.addMissingUnambiguousCourses()
         }
     }
 }
 
 #Preview {
-    RemainingCoursesSelectionView()
+    NavigationStack {
+        RemainingCoursesSelectionView()
+            .environment(CourseSelection())
+    }
 }

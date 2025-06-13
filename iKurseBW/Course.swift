@@ -7,25 +7,64 @@
 
 import SwiftUI
 
-enum CourseAttribute: LocalizedStringKey, Codable {
-    case german             = "Deutsch"
-    case science            = "Naturwissenschaft"
-    case foreignLanguage    = "Fremdsprache"
-    case math               = "Mathematik"
-    case newScience         = "Zweite Fremdsprache oder Naturwissenschaft"
-    case socialStudies      = "Gemeinschaftskunde"
-    case geography          = "Erdkunde"
-    case history            = "Geschichte"
-    case religion           = "Religion"
-    case art                = "Kunst"
-    case sports             = "Sport"
+enum CourseAttribute: String, Codable {
+    case german
+    case science
+    case foreignLanguage
+    case math
+    case newScience
+    case socialStudies
+    case geography
+    case history
+    case religion
+    case art
+    case sports
 
-    case social             = "Gesellschaftswissenschaften"
-    case artMusicSports     = "Kunst, Musik oder Sport"
-    case artMusic           = "Kunst oder Musik"
+    case social
+    case artMusicSports
+    case artMusic
 
-    case noPerformerCourse  = "Wahlpflichtfach"
-    case seminarCourse      = "Seminarkurs"
+    case noPerformerCourse
+    case seminarCourse
+    
+    func localized() -> String {
+        switch self {
+        case .german:
+            return "Deutsch"
+        case .science:
+            return "Naturwissenschaft"
+        case .foreignLanguage:
+            return "Fremdsprache"
+        case .math:
+            return "Mathematik"
+        case .newScience:
+            return "Zweite Fremdsprache oder Naturwissenschaft"
+        case .socialStudies:
+            return "Gemeinschaftskunde"
+        case .geography:
+            return "Erdkunde"
+        case .history:
+            return "Geschichte"
+        case .religion:
+            return "Religion"
+        case .art:
+            return "Kunst"
+        case .sports:
+            return "Sport"
+
+        case .social:
+            return "Gesellschaftswissenschaften"
+        case .artMusicSports:
+            return "Kunst, Musik oder Sport"
+        case .artMusic:
+            return "Kunst oder Musik"
+
+        case .noPerformerCourse:
+            return "Wahlpflichtfach"
+        case .seminarCourse:
+            return "Seminarkurs"
+        }
+    }
 }
 enum Field: Int, Codable {
     case language = 1
@@ -62,7 +101,7 @@ struct Course: Codable, Equatable, Hashable, Identifiable {
     func isValidPerformerCourse(performers: [Course?]) -> Bool {
         if (performers[0] != nil && performers[1] != nil && performers[2] == nil) && !performers.contains(where: { $0?.attributes.contains(where: { $0 == .german || $0 == .math }) ?? false})  {
             // Third performer must be German, Math or Social
-            if !($0.attributes.contains(.german) || $0.attributes.contains(.math) || $0.attributes.contains(.social)) {
+            if !(self.attributes.contains(.german) || self.attributes.contains(.math) || self.attributes.contains(.social)) {
                 return false
             }
         }

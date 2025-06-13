@@ -9,31 +9,41 @@ import SwiftUI
 
 struct PerformerCourseSelectionView: View {
     @Environment(CourseSelection.self) var courseSelection
+    @State private var selectedCourse = ""
     let index: Int
+    let previousSelection: Course?
     var body: some View {
-        VStack {
-            Text("Wähle deinen \(index + 1). LK")
-            PerformerCoursePicker(index: index, titleKey: "")
-                .pickerStyle(.radioGroup)
-            if index != 2 {
-                NavigationLink(
-                    "Weiter",
-                    destination: PerformerCourseSelectionView(index: index + 1)
-                )
-                .disabled(courseSelection.performerCourses[index] == nil)
-            } else {
-                NavigationLink(
-                    "Weiter",
-                    destination: GradedBasicCourseSelectionView()
-                )
+        List {
+            Text("Wähle deinen \(index + 1). Leistungskurs. Die Leistungskurse werden im Abitur schriftlich geprüft. Deine Leistungskurswahl kann auch die Wahl deiner mündlich geprüften Basiskurse beeinflussen. Du kannst nur Kurse wählen, die für deine gewählten Basiskurse verfügbar sind.")
+            ForEach(
+                courseSelection.availablePerformerCourses
+            ) { course in
+                NavigationLink("\(course.name)") {
+                    if index >= 2 {
+                        GradedBasicCourseSelectionView(lastPerformerCourse: course)
+                    } else {
+                        PerformerCourseSelectionView(index: index + 1, previousSelection: course)
+                    }
+                }
             }
         }
-        .padding()
+        .onChange(of: selectedCourse) {
+            courseSelection.performerCourses[index] = courseSelection.availableCourses.first(where: {
+                $0.name == selectedCourse
+            }) ?? nil
+        }
+        .onAppear {
+            if let previous = previousSelection {
+                courseSelection.performerCourses[index - 1] = previous
+            }
+        }
         .navigationTitle("Leistungskurse (\(index + 1)/3)")
     }
 }
 
 #Preview {
-    PerformerCourseSelectionView(index: 0)
-        .environment(CourseSelection())
+    NavigationStack {
+        PerformerCourseSelectionView(index: 0, previousSelection: nil)
+            .environment(CourseSelection())
+    }
 }

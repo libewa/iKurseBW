@@ -15,16 +15,6 @@ struct ContentView: View {
         }
         .symbolRenderingMode(.hierarchical)
         .environment(selection)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-
-                } label: {
-                    Image(systemName: "rainbow")
-                        .symbolRenderingMode(.multicolor)
-                }
-            }
-        }
     }
 }
 
