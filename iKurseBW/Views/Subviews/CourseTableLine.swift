@@ -4,10 +4,11 @@ enum CourseGradingType {
     case performer, basic, gradedBasic, none
 }
 
-struct RemainingCourseSelectionLineStack: View {
+struct CourseTableLine: View {
     @Environment(CourseSelection.self) var courseSelection
     let course: Course
     @State var selected = CourseGradingType.none
+    let locked: Bool
     var body: some View {
         HStack {
             Text(course.name)
@@ -48,7 +49,7 @@ struct RemainingCourseSelectionLineStack: View {
                 selected = .performer
             } else if courseSelection.gradedBasicCourses.contains(where: { $0?.name == course.name }) {
                 selected = .gradedBasic
-            } else if courseSelection.availableCourses.filter({ $0.attributes.contains(course.attributes[0]) }).count == 1 {
+            } else if courseSelection.basicCourses.contains(where: { $0.name == course.name }) {
                 selected = .basic
             }
         }
@@ -63,10 +64,11 @@ struct RemainingCourseSelectionLineStack: View {
                 }
             }
         }
+        .disabled(locked)
     }
 }
 
 #Preview {
-    RemainingCourseSelectionLineStack(course: Course(name: "Mathematik", lessonsPerWeek: [3,3,3,3], attributes: [.math], field: .science), selected: .none)
+    CourseTableLine(course: Course(name: "Mathematik", lessonsPerWeek: [3,3,3,3], attributes: [.math], field: .science), selected: .performer, locked: false)
         .environment(CourseSelection())
 }

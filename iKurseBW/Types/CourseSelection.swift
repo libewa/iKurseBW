@@ -127,12 +127,36 @@ import SwiftUI
         }
         return missing
     }
+    
+    var totalSemesters: Int {
+        allSelectedCourses.reduce(0) { total, course in
+            total + course.lessonsPerWeek.reduce(0) { $0 + ($1 > 0 ? 1 : 0) }
+        }
+    }
+    
+    enum ValidityCheckResult {
+        case valid
+        case missingPerformerCourses
+        case missingGradedBasicCourses
+        case missingMandatoryCourses([CourseAttribute])
+        case notEnoughCourses
+        case dangerouslyLowAmountOfCourses
+    }
 
-    var isValid: Bool {
-        guard !performerCourses.contains(nil) else { return false }
-        guard !gradedBasicCourses.contains(nil) else { return false }
-        guard missingMandatoryCourses == nil else { return false }
-        return true
+    var validity: ValidityCheckResult {
+        guard !performerCourses.contains(nil) else { return .missingPerformerCourses }
+        guard !gradedBasicCourses.contains(nil) else { return .missingGradedBasicCourses }
+        if let missing = self.missingMandatoryCourses {
+            return .missingMandatoryCourses(missing)
+        }
+        if self.totalSemesters < 44 {
+            if self.totalSemesters < 42 {
+                return .notEnoughCourses
+            } else {
+                return .dangerouslyLowAmountOfCourses
+            }
+        }
+        return .valid
     }
 
     var availablePerformerCourses: [Course] {

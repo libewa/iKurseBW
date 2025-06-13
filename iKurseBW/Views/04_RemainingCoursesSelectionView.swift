@@ -12,64 +12,68 @@ struct RemainingCoursesSelectionView: View {
     var body: some View {
         List {
             Section {
-                if let missing = courseSelection.missingMandatoryCourses {
+                switch courseSelection.validity {
+                case .missingMandatoryCourses(let missing):
                     Label("Fehlende Kurse", systemImage: "xmark.circle")
-                        .foregroundColor(.red)
+                        .foregroundStyle(.red)
                     ForEach(missing, id: \.self) { courseType in
                         Text(courseType.localized())
                     }
-                } else {
+                case .notEnoughCourses:
+                    Text(
+                        "Du brauchst mindestens 42 Kurse (Semester eines Faches)"
+                    )
+                    .foregroundStyle(.red)
+                case .dangerouslyLowAmountOfCourses:
+                    Text(
+                        "Es werden mindestens 44 Kurse empfohlen. Mit 42 Kursen besteht das Risiko, bei einer Sportverletzung oder längerer Krankheit nicht zum Abitur zugelassen zu werden."
+                    )
+                    .foregroundStyle(.orange)
+                default:
                     Label(
                         "Alle Kurse ausgewählt!",
                         systemImage: "checkmark.circle"
                     )
                     .foregroundColor(.green)
-                    //TODO: Export selected courses
-                    /*
-                     ShareLink(
-                     item: courseSelection.export,
-                     label: {
-                     Label(
-                     "Exportieren",
-                     systemImage: "square.and.arrow.up"
-                     )
-                     },
-                     )*/
+                    NavigationLink("Weiter") {
+                        ResultView()
+                    }
+                }
+                Text("\(courseSelection.totalSemesters) Kurse gwählt")
+                HStack {
+                    Text("Summe")
+                    Spacer()
+                    Text(
+                        "\(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[0] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[1] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[2] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[3] })"
+                    )
+                    .font(.system(size: 12, weight: .bold, design: .monospaced))
                 }
             }
             Section("Aufgabenfeld 1 (Sprache/Kunst)") {
                 ForEach(courseSelection.languageCourses) { course in
-                    RemainingCourseSelectionLineStack(course: course)
+                    CourseTableLine(course: course, locked: false)
                 }
             }
             Section("Aufgabenfeld 2 (Gesellschaft)") {
                 ForEach(courseSelection.socialCourses) { course in
-                    RemainingCourseSelectionLineStack(course: course)
+                    CourseTableLine(course: course, locked: false)
                 }
             }
             Section("Aufgabenfeld 3 (Mathematik/Naturwissenschaften)") {
                 ForEach(courseSelection.scienceCourses) { course in
-                    RemainingCourseSelectionLineStack(course: course)
+                    CourseTableLine(course: course, locked: false)
                 }
             }
             Section("Sport") {
                 ForEach(courseSelection.sportsCourses) { course in
-                    RemainingCourseSelectionLineStack(course: course)
+                    CourseTableLine(course: course, locked: false)
                 }
-            }
-
-            HStack {
-                Text("Summe")
-                Spacer()
-                Text(
-                    "\(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[0] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[1] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[2] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[3] })"
-                )
-                .font(.system(size: 12, weight: .bold, design: .monospaced))
             }
         }
         .onAppear {
             courseSelection.addMissingUnambiguousCourses()
         }
+        .navigationTitle("Weitere Kurse wählen")
     }
 }
 
