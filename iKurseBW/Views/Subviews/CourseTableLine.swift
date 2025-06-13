@@ -41,8 +41,13 @@ struct CourseTableLine: View {
                     courseSelection.availableCourses.filter { $0.attributes.contains(course.attributes[0]) }.count == 1
                 )
             }
-            Text("\(course.lessonsPerWeek[0]) \(course.lessonsPerWeek[1]) \(course.lessonsPerWeek[2]) \(course.lessonsPerWeek[3])")
-                .font(.system(size: 12, weight: .bold, design: .monospaced))
+            if courseSelection.performerCourses.contains(where: { $0?.name == course.name }) {
+                Text("5 5 5 5")
+                    .font(.system(size: 12, weight: .bold, design: .monospaced))
+            } else {
+                Text("\(course.lessonsPerWeek[0]) \(course.lessonsPerWeek[1]) \(course.lessonsPerWeek[2]) \(course.lessonsPerWeek[3])")
+                    .font(.system(size: 12, weight: .bold, design: .monospaced))
+            }
         }
         .onAppear {
             if courseSelection.performerCourses.contains(where: { $0?.name == course.name }) {
