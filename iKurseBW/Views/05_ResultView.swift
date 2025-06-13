@@ -32,7 +32,7 @@ struct ResultView: View {
             HStack {
                 Text("Summe")
                 Spacer()
-                Text("\(courseSelection.lessonsPerWeek[0]) \(courseSelection.lessonsPerWeek[1]) \(courseSelection.lessonsPerWeek[2]) \(courseSelection.lessonsPerWeek[3])")
+                Text(verbatim: "\(courseSelection.lessonsPerWeek[0]) \(courseSelection.lessonsPerWeek[1]) \(courseSelection.lessonsPerWeek[2]) \(courseSelection.lessonsPerWeek[3])")
                 .font(.system(size: 12, weight: .bold, design: .monospaced))
             }
         }

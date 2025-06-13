@@ -42,10 +42,10 @@ struct CourseTableLine: View {
                 )
             }
             if courseSelection.performerCourses.contains(where: { $0?.name == course.name }) {
-                Text("5 5 5 5")
+                Text("5 5 5 5", comment: "The number of lessons per week for performer courses")
                     .font(.system(size: 12, weight: .bold, design: .monospaced))
             } else {
-                Text("\(course.lessonsPerWeek[0]) \(course.lessonsPerWeek[1]) \(course.lessonsPerWeek[2]) \(course.lessonsPerWeek[3])")
+                Text(verbatim: "\(course.lessonsPerWeek[0]) \(course.lessonsPerWeek[1]) \(course.lessonsPerWeek[2]) \(course.lessonsPerWeek[3])")
                     .font(.system(size: 12, weight: .bold, design: .monospaced))
             }
         }

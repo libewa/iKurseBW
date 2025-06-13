@@ -32,7 +32,7 @@ struct CourseSelectionWarningView: View {
             }
         default:
             Label(
-                "Alle Kurse ausgewählt!",
+                "Alle benötigten Kurse ausgewählt!",
                 systemImage: "checkmark.circle"
             )
             .foregroundColor(.green)

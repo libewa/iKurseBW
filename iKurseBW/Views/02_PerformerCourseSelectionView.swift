@@ -20,7 +20,7 @@ struct PerformerCourseSelectionView: View {
             ForEach(
                 courseSelection.availablePerformerCourses
             ) { course in
-                NavigationLink("\(course.name)") {
+                NavigationLink(course.name) {
                     if index >= 2 {
                         GradedBasicCourseSelectionView(
                             lastPerformerCourse: course
