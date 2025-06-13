@@ -13,7 +13,18 @@ struct ContentView: View {
         NavigationStack {
             GreetingView()
         }
+        .symbolRenderingMode(.hierarchical)
         .environment(selection)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+
+                } label: {
+                    Image(systemName: "rainbow")
+                        .symbolRenderingMode(.multicolor)
+                }
+            }
+        }
     }
 }
 

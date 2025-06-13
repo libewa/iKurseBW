@@ -35,12 +35,14 @@ struct FullCourseSelectionLineStack: View {
             }
         }
         .onChange(of: selected) {
-            if selected == .basic {
-                if !courseSelection.basicCourses.contains(course) {
-                    courseSelection.basicCourses.append(course)
+            withAnimation {
+                if selected == .basic {
+                    if !courseSelection.basicCourses.contains(course) {
+                        courseSelection.basicCourses.append(course)
+                    }
+                } else {
+                    courseSelection.basicCourses.removeAll(where: { $0.name == course.name })
                 }
-            } else {
-                courseSelection.basicCourses.removeAll(where: { $0.name == course.name })
             }
         }
     }

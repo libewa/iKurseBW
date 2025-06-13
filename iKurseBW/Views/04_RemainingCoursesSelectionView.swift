@@ -24,13 +24,13 @@ struct RemainingCoursesSelectionView: View {
             }
             List {
                 if let missing = courseSelection.missingCourses {
-                    Text("Fehlende Kurse: \(missing.joined(separator: ", "))")
+                    Label("Fehlende Kurse: \(missing.joined(separator: ", "))", systemImage: "xmark.circle")
                     .foregroundColor(.red)
                     ForEach(missing, id: \.self) { courseType in
                         Text(courseType.rawValue)
                     }
                 } else {
-                    Text("Alle Kurse ausgewählt!")
+                    Label("Alle Kurse ausgewählt!", systemImage: "checkmark.circle")
                         .foregroundColor(.green)
                     //TODO: Export selected courses
                 }
