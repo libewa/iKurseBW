@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://https://raw.githubusercontent.com/libewa/iKurseBW/refs/heads/main/iKurseBW/Resources/schema.json",
+  "title": "iKurseBW Course List",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The unique name of the course."
+      },
+      "lessonsPerWeek": {
+        "minItems": 4,
+        "maxItems": 4,
+        "type": "array",
+        "items": { "type": "integer" },
+        "description": "Lessons per week for each semester."
+      },
+      "attributes": {
+        "type": "array",
+        "minItems": 1,
+        "description": "List of course attributes. The first attribute must be th main course type (e.g. 'german', 'math').",
+        "items": {
+          "type": "string",
+          "enum": [
+            "german",
+            "science",
+            "foreignLanguage",
+            "math",
+            "newScience",
+            "socialStudies",
+            "geography",
+            "history",
+            "religion",
+            "art",
+            "sports",
+            "social",
+            "artMusicSports",
+            "artMusic",
+            "noPerformerCourse",
+            "seminarCourse"
+          ]
+        }
+      },
+      "field": {
+        "type": "integer",
+        "enum": [1, 2, 3, 4],
+        "description": "Field of the course: 1=language, 2=social, 3=science, 4=sports."
+      }
+    },
+    "required": ["name", "lessonsPerWeek", "attributes", "field"]
+  }
+}
