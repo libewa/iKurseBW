@@ -41,7 +41,7 @@ struct GradedBasicCoursePicker: View {
                 } else if forced == .social {
                     ForEach(
                         courseSelection.availableCourses.filter({
-                            $0.attributes.contains(.social)
+                            $0.attributes.contains(.social) && $0.isAvailableForOralGrading(performers: courseSelection.performerCourses)
                         })
                     ) { course in
                         Text(course.name).tag(course.name)

@@ -127,13 +127,30 @@ import SwiftUI
         }
         return missing
     }
-    
+
+    var lessonsPerWeek: [Int] {
+        return [
+            self.allSelectedCourses.reduce(0) {
+                $0 + (performerCourses.contains($1) ? 5 : $1.lessonsPerWeek[0])
+            },
+            self.allSelectedCourses.reduce(0) {
+                $0 + (performerCourses.contains($1) ? 5 : $1.lessonsPerWeek[1])
+            },
+            self.allSelectedCourses.reduce(0) {
+                $0 + (performerCourses.contains($1) ? 5 : $1.lessonsPerWeek[2])
+            },
+            self.allSelectedCourses.reduce(0) {
+                $0 + (performerCourses.contains($1) ? 5 : $1.lessonsPerWeek[3])
+            },
+        ]
+    }
+
     var totalSemesters: Int {
         allSelectedCourses.reduce(0) { total, course in
             total + course.lessonsPerWeek.reduce(0) { $0 + ($1 > 0 ? 1 : 0) }
         }
     }
-    
+
     enum ValidityCheckResult {
         case valid
         case missingPerformerCourses
@@ -144,8 +161,12 @@ import SwiftUI
     }
 
     var validity: ValidityCheckResult {
-        guard !performerCourses.contains(nil) else { return .missingPerformerCourses }
-        guard !gradedBasicCourses.contains(nil) else { return .missingGradedBasicCourses }
+        guard !performerCourses.contains(nil) else {
+            return .missingPerformerCourses
+        }
+        guard !gradedBasicCourses.contains(nil) else {
+            return .missingGradedBasicCourses
+        }
         if let missing = self.missingMandatoryCourses {
             return .missingMandatoryCourses(missing)
         }

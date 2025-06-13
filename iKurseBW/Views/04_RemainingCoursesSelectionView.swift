@@ -12,40 +12,12 @@ struct RemainingCoursesSelectionView: View {
     var body: some View {
         List {
             Section {
-                switch courseSelection.validity {
-                case .missingMandatoryCourses(let missing):
-                    Label("Fehlende Kurse", systemImage: "xmark.circle")
-                        .foregroundStyle(.red)
-                    ForEach(missing, id: \.self) { courseType in
-                        Text(courseType.localized())
-                    }
-                case .notEnoughCourses:
-                    Text(
-                        "Du brauchst mindestens 42 Kurse (Semester eines Faches)"
-                    )
-                    .foregroundStyle(.red)
-                case .dangerouslyLowAmountOfCourses:
-                    Text(
-                        "Es werden mindestens 44 Kurse empfohlen. Mit 42 Kursen besteht das Risiko, bei einer Sportverletzung oder längerer Krankheit nicht zum Abitur zugelassen zu werden."
-                    )
-                    .foregroundStyle(.orange)
-                default:
-                    Label(
-                        "Alle Kurse ausgewählt!",
-                        systemImage: "checkmark.circle"
-                    )
-                    .foregroundColor(.green)
-                    NavigationLink("Weiter") {
-                        ResultView()
-                    }
-                }
+                CourseSelectionWarningView(validity: courseSelection.validity)
                 Text("\(courseSelection.totalSemesters) Kurse gwählt")
                 HStack {
                     Text("Summe")
                     Spacer()
-                    Text(
-                        "\(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[0] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[1] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[2] }) \(courseSelection.allSelectedCourses.reduce(0) { $0 + $1.lessonsPerWeek[3] })"
-                    )
+                    Text("\(courseSelection.lessonsPerWeek[0]) \(courseSelection.lessonsPerWeek[1]) \(courseSelection.lessonsPerWeek[2]) \(courseSelection.lessonsPerWeek[3])")
                     .font(.system(size: 12, weight: .bold, design: .monospaced))
                 }
             }
