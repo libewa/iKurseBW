@@ -27,8 +27,17 @@ struct CourseSelectionWarningView: View {
                 "Es werden mindestens 44 Kurse empfohlen. Mit 42 Kursen besteht das Risiko, bei einer Sportverletzung oder längerer Krankheit nicht zum Abitur zugelassen zu werden.", systemImage: "exclamationmark.circle"
             )
             .foregroundStyle(.orange)
-            NavigationLink("Trotzdem weiter") {
+            NavigationLink {
                 ResultView()
+            } label: {
+                HStack {
+                    Text("Trotzdem weiter")
+#if os(macOS)
+                    Spacer()
+                    Image(systemName: "chevron.forward")
+                        .foregroundStyle(.secondary)
+#endif
+                }
             }
         default:
             Label(
@@ -36,8 +45,17 @@ struct CourseSelectionWarningView: View {
                 systemImage: "checkmark.circle"
             )
             .foregroundColor(.green)
-            NavigationLink("Weiter") {
+            NavigationLink {
                 ResultView()
+            } label: {
+                HStack {
+                    Text("Weiter")
+#if os(macOS)
+                    Spacer()
+                    Image(systemName: "chevron.forward")
+                        .foregroundStyle(.secondary)
+#endif
+                }
             }
         }
     }

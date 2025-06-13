@@ -12,11 +12,10 @@ struct CourseTableLine: View {
     var body: some View {
         HStack {
             Text(course.name)
+            Spacer()
             if selected == .performer {
-                Spacer()
                 Label("Leistungsfach", systemImage: "graduationcap.fill").tag(CourseGradingType.performer).labelStyle(.iconOnly)
             } else if selected == .gradedBasic {
-                Spacer()
                 Label("Basisfach mündlich geprüft", systemImage: "inset.filled.rectangle.and.person.filled").tag(CourseGradingType.gradedBasic).labelStyle(.iconOnly)
             } else {
                 Button {
@@ -29,7 +28,6 @@ struct CourseTableLine: View {
                     }
                 } label: {
                     HStack {
-                        Spacer()
                         if selected == .basic {
                             Label("Basisfach", systemImage: "book.closed.fill").tag(CourseGradingType.basic).labelStyle(.iconOnly)
                         } else {
@@ -37,6 +35,7 @@ struct CourseTableLine: View {
                         }
                     }
                 }
+                .buttonStyle(.bordered)
                 .disabled(
                     courseSelection.availableCourses.filter { $0.attributes.contains(course.attributes[0]) }.count == 1
                 )

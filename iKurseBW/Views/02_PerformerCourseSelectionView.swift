@@ -20,7 +20,7 @@ struct PerformerCourseSelectionView: View {
             ForEach(
                 courseSelection.availablePerformerCourses
             ) { course in
-                NavigationLink(course.name) {
+                NavigationLink {
                     if index >= 2 {
                         GradedBasicCourseSelectionView(
                             lastPerformerCourse: course
@@ -30,6 +30,15 @@ struct PerformerCourseSelectionView: View {
                             index: index + 1,
                             previousSelection: course
                         )
+                    }
+                } label: {
+                    HStack {
+                        Text(course.name)
+                        #if os(macOS)
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                            .foregroundStyle(.secondary)
+                        #endif
                     }
                 }
             }

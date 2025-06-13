@@ -20,7 +20,7 @@ struct GreetingView: View {
                 """
                 Hallo, und willkommen bei iKurseBW!
                 Diese App hilft dir bei der Wahl deiner Kurse für die Kursstufe des allgemeinbildenden Gymnasiums (Klasse 11 und 12 oder 12 und 13).
-                
+
                 Die App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub oder per E-Mail.
                 Bitte beachte, dass die App keine offizielle App des Kultusministeriums ist und daher keine Garantie für die Richtigkeit der Informationen gegeben werden kann.
                 """
@@ -42,19 +42,22 @@ struct GreetingView: View {
                 )
             }
             #if !os(tvOS)
-            Text(
-                "Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl."
-            )
-            
-            HStack {
-                Button("Datei auswählen", systemImage: "arrow.down.document") {
-                    fileImportPresented = true
-                }
-                Spacer()
                 Text(
-                    "\(courseSelection.availableCourses.count) Kurse verfügbar"
+                    "Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl."
                 )
-            }
+
+                HStack {
+                    Button(
+                        "Datei auswählen",
+                        systemImage: "arrow.down.document"
+                    ) {
+                        fileImportPresented = true
+                    }
+                    Spacer()
+                    Text(
+                        "\(courseSelection.availableCourses.count) Kurse verfügbar"
+                    )
+                }
             #endif
             NavigationLink(
                 "Weiter zur LK-Wahl",
@@ -65,10 +68,10 @@ struct GreetingView: View {
             )
         }
         .navigationTitle("Willkommen bei iKurseBW!")
-#if !os(macOS)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Image(systemName: "rainbow")
+        #if !os(macOS)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Image(systemName: "rainbow")
                     .symbolRenderingMode(.multicolor)
                     .onTapGesture {
                         withAnimation {
@@ -76,43 +79,46 @@ struct GreetingView: View {
                         }
                     }
                     .symbolEffect(.variableColor, isActive: showEasterEgg)
+                }
             }
-        }
-#endif
-#if !os(tvOS)
-        .fileImporter(
-            isPresented: $fileImportPresented,
-            allowedContentTypes: [.json]
-        ) { result in
-            do {
-                let file = try result.get()
-                let data = try Data(contentsOf: file)
-                let courses = try JSONDecoder().decode(
-                    [Course].self,
-                    from: data
-                )
-                courseSelection.availableCourses = courses
-            } catch {
-                self.error = error
-            }
-        }
-        .alert(
-            "Ein Fehler ist aufgetreten",
-            isPresented: $showError,
-            presenting: error,
-            actions: { _ in
-                Button("OK", role: .cancel) {}
-            },
-            message: { error in
-                Text(error.localizedDescription)
-            }
-        )
         #endif
-#if !os(macOS) && !os(tvOS)
-        .navigationBarTitleDisplayMode(.inline)
-#endif
+        #if !os(tvOS)
+            .fileImporter(
+                isPresented: $fileImportPresented,
+                allowedContentTypes: [.json]
+            ) { result in
+                do {
+                    let file = try result.get()
+                    let data = try Data(contentsOf: file)
+                    let courses = try JSONDecoder().decode(
+                        [Course].self,
+                        from: data
+                    )
+                    courseSelection.availableCourses = courses
+                } catch {
+                    self.error = error
+                }
+            }
+            .alert(
+                "Ein Fehler ist aufgetreten",
+                isPresented: $showError,
+                presenting: error,
+                actions: { _ in
+                    Button("OK", role: .cancel) {}
+                },
+                message: { error in
+                    Text(error.localizedDescription)
+                }
+            )
+        #endif
+        #if !os(macOS) && !os(tvOS)
+            .navigationBarTitleDisplayMode(.inline)
+        #endif
+        #if os(macOS)
+            .padding()
+        #endif
     }
-    
+
 }
 
 #Preview {

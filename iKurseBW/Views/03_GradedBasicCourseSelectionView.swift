@@ -29,6 +29,9 @@ struct GradedBasicCourseSelectionView: View {
             courseSelection.performerCourses[2] = lastPerformerCourse
         }
         .navigationTitle("Geprüfte Basiskurse")
+        #if os(macOS)
+            .padding()
+        #endif
     }
 }
 
