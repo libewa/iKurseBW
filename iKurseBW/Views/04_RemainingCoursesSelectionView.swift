@@ -57,7 +57,7 @@ struct RemainingCoursesSelectionView: View {
                     RemainingCourseSelectionLineStack(course: course)
                 }
             }
-            
+
             HStack {
                 Text("Summe")
                 Spacer()

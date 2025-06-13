@@ -14,23 +14,31 @@ struct PerformerCourseSelectionView: View {
     let previousSelection: Course?
     var body: some View {
         List {
-            Text("Wähle deinen \(index + 1). Leistungskurs. Die Leistungskurse werden im Abitur schriftlich geprüft und während der gesamten Kursstufe mit 5 Wochenstunden unterrichtet. Deine Leistungskurswahl kann auch die Wahl deiner mündlich geprüften Basiskurse beeinflussen.")
+            Text(
+                "Wähle deinen \(index + 1). Leistungskurs. Die Leistungskurse werden im Abitur schriftlich geprüft und während der gesamten Kursstufe mit 5 Wochenstunden unterrichtet. Deine Leistungskurswahl kann auch die Wahl deiner mündlich geprüften Basiskurse beeinflussen."
+            )
             ForEach(
                 courseSelection.availablePerformerCourses
             ) { course in
                 NavigationLink("\(course.name)") {
                     if index >= 2 {
-                        GradedBasicCourseSelectionView(lastPerformerCourse: course)
+                        GradedBasicCourseSelectionView(
+                            lastPerformerCourse: course
+                        )
                     } else {
-                        PerformerCourseSelectionView(index: index + 1, previousSelection: course)
+                        PerformerCourseSelectionView(
+                            index: index + 1,
+                            previousSelection: course
+                        )
                     }
                 }
             }
         }
         .onChange(of: selectedCourse) {
-            courseSelection.performerCourses[index] = courseSelection.availableCourses.first(where: {
-                $0.name == selectedCourse
-            }) ?? nil
+            courseSelection.performerCourses[index] =
+                courseSelection.availableCourses.first(where: {
+                    $0.name == selectedCourse
+                }) ?? nil
         }
         .onAppear {
             if let previous = previousSelection {

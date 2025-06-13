@@ -12,10 +12,15 @@ struct GradedBasicCourseSelectionView: View {
     let lastPerformerCourse: Course
     var body: some View {
         Form {
-            Text("Nun wähle deine geprüften Basiskurse. Einer oder zwei können durch deine Leistungsfachwahl vorgegeben sein.")
+            Text(
+                "Nun wähle deine geprüften Basiskurse. Einer oder zwei können durch deine Leistungsfachwahl vorgegeben sein."
+            )
             GradedBasicCoursePicker(index: 0)
             GradedBasicCoursePicker(index: 1)
-            NavigationLink("Verbleibende Kurse wählen", destination: RemainingCoursesSelectionView())
+            NavigationLink(
+                "Verbleibende Kurse wählen",
+                destination: RemainingCoursesSelectionView()
+            )
             .disabled(
                 courseSelection.gradedBasicCourses.contains(nil)
             )
@@ -29,7 +34,14 @@ struct GradedBasicCourseSelectionView: View {
 
 #Preview {
     NavigationStack {
-        GradedBasicCourseSelectionView(lastPerformerCourse: Course(name: "Mathematik", lessonsPerWeek: [3,3,3,3], attributes: [.math], field: .science))
-            .environment(CourseSelection())
+        GradedBasicCourseSelectionView(
+            lastPerformerCourse: Course(
+                name: "Mathematik",
+                lessonsPerWeek: [3, 3, 3, 3],
+                attributes: [.math],
+                field: .science
+            )
+        )
+        .environment(CourseSelection())
     }
 }
