@@ -1,0 +1,69 @@
+{
+  "fill" : {
+    "automatic-gradient" : "extended-gray:1.00000,1.00000"
+  },
+  "groups" : [
+    {
+      "blur-material" : null,
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill" : {
+            "solid" : "extended-gray:1.00000,1.00000"
+          },
+          "image-name" : "graduationcap.svg",
+          "name" : "graduationcap",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              0,
+              146.609375
+            ]
+          }
+        }
+      ],
+      "lighting" : "individual",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 1
+      },
+      "specular" : false,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.25
+      }
+    },
+    {
+      "hidden" : false,
+      "layers" : [
+        {
+          "fill" : {
+            "solid" : "srgb:1.00000,0.98824,0.32549,1.00000"
+          },
+          "image-name" : "ikursebw3.png",
+          "name" : "ikursebw3"
+        },
+        {
+          "fill" : {
+            "solid" : "srgb:1.00000,0.98824,0.32549,1.00000"
+          },
+          "image-name" : "ikursebw1.png",
+          "name" : "ikursebw1"
+        }
+      ],
+      "lighting" : "individual",
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.8
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.7
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : "shared"
+  }
+}
