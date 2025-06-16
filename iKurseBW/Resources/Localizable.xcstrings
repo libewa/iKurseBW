@@ -35,12 +35,12 @@
         }
       }
     },
-    "App-Quellcode auf GitHub" : {
+    "App-Quellcode und Issue-Tracker auf GitHub" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "App source on GitHub"
+            "value" : "App source code and issue tracker on GitHub"
           }
         }
       }
@@ -146,6 +146,16 @@
         }
       }
     },
+    "Dir fehlt der Sportkurs. Wenn du eine Sportbefreiung hast, kannst du trotzdem fortfahren." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are missing a sports course. If you have been explicitly exempt from sports class, you can continue anyway."
+          }
+        }
+      }
+    },
     "Du brauchst mindestens 42 Kurse (Semester eines Faches)" : {
       "localizations" : {
         "en" : {
@@ -246,7 +256,7 @@
         }
       }
     },
-    "Hallo, und willkommen bei iKurseBW!\nDiese App hilft dir bei der Wahl deiner Kurse für die Kursstufe des allgemeinbildenden Gymnasiums (Klasse 11 und 12 oder 12 und 13).\n\nDie App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub oder per E-Mail.\nBitte beachte, dass die App keine offizielle App des Kultusministeriums ist und daher keine Garantie für die Richtigkeit der Informationen gegeben werden kann." : {
+    "Hallo, und willkommen bei iKurseBW!\nDiese App hilft dir bei der Wahl deiner Kurse für die Kursstufe des allgemeinbildenden Gymnasiums (Klasse 11 und 12 oder 12 und 13).\n\nDie App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub.\nBitte beachte, dass die App keine offizielle App des Kultusministeriums ist und daher keine Garantie für die Richtigkeit der Informationen gegeben werden kann." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -432,6 +442,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choose remaining courses"
+          }
+        }
+      }
+    },
+    "Vertiefungskurs" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In-depth course"
           }
         }
       }

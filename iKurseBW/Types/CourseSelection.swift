@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let mandatoryCourses: Set<CourseAttribute> = [.german, .math, .foreignLanguage, .science, .history, .socialStudies, .geography, .religion, .artMusic, .sports]
+
 @Observable class CourseSelection: Codable {
     var availableCourses: [Course]
     var performerCourses: [Course?]
@@ -70,62 +72,24 @@ import SwiftUI
         return forced
     }
 
-    var missingMandatoryCourses: [CourseAttribute]? {
-        var missing: [CourseAttribute] = []
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.german)
-        }) {
-            missing.append(.german)
+    var missingMandatoryCourses: [CourseAttribute] {
+        var missing = mandatoryCourses.subtracting(allSelectedCourses.flatMap {
+            $0.attributes.contains(.inDepthCourse) ? [] : $0.attributes
+        })
+        //TODO: Allow not selecting a sports course, but give out a warning.
+        
+        if !missing.contains(.science) {
+            var coursesWithoutFirstScience = allSelectedCourses
+            coursesWithoutFirstScience.remove(at: coursesWithoutFirstScience.firstIndex(where: { $0.attributes.contains(.science) })!)
+            if !coursesWithoutFirstScience.contains(where: { $0.attributes.contains(.newScience) || $0.attributes.contains(.science) }) {
+                var coursesWithoutFirstForeignLanguage = allSelectedCourses
+                coursesWithoutFirstForeignLanguage.remove(at: coursesWithoutFirstForeignLanguage.firstIndex(where: { $0.attributes.contains(.foreignLanguage) })!)
+                if !coursesWithoutFirstForeignLanguage.contains(where: { $0.attributes.contains(.foreignLanguage) }) {
+                    missing.insert(.newScience)
+                }
+            }
         }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.math)
-        }) {
-            missing.append(.math)
-        }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.foreignLanguage)
-        }) {
-            missing.append(.foreignLanguage)
-        }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.science)
-        }) {
-            missing.append(.science)
-        }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.history)
-        }) {
-            missing.append(.history)
-        }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.socialStudies)
-        }) {
-            missing.append(.socialStudies)
-        }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.geography)
-        }) {
-            missing.append(.geography)
-        }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.religion)
-        }) {
-            missing.append(.religion)
-        }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.artMusic)
-        }) {
-            missing.append(.artMusic)
-        }
-        if !self.allSelectedCourses.contains(where: {
-            $0.attributes.contains(.sports)
-        }) {
-            missing.append(.sports)
-        }
-        if missing.isEmpty {
-            return nil
-        }
-        return missing
+        return Array(missing)
     }
 
     var lessonsPerWeek: [Int] {
@@ -167,8 +131,8 @@ import SwiftUI
         guard !gradedBasicCourses.contains(nil) else {
             return .missingGradedBasicCourses
         }
-        if let missing = self.missingMandatoryCourses {
-            return .missingMandatoryCourses(missing)
+        if !self.missingMandatoryCourses.isEmpty {
+            return .missingMandatoryCourses(self.missingMandatoryCourses)
         }
         if self.totalSemesters < 44 {
             if self.totalSemesters < 42 {
@@ -187,10 +151,9 @@ import SwiftUI
     }
 
     func addMissingUnambiguousCourses() {
-        guard let missing = self.missingMandatoryCourses else { return }
-        for attribute in missing {
+        for attribute in self.missingMandatoryCourses {
             let candidates = self.availableCourses.filter {
-                $0.attributes.contains(attribute)
+                $0.attributes.contains(attribute) && !$0.attributes.contains(.inDepthCourse)
             }
             if candidates.count == 1 {
                 let course = candidates[0]

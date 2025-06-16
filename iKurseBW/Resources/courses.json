@@ -152,25 +152,25 @@
     {
         "name": "Vertiefungskurs Mathematik",
         "lessonsPerWeek": [2, 2, 2, 2],
-        "attributes": ["noPerformerCourse"],
+        "attributes": ["noPerformerCourse", "math", "inDepthCourse"],
         "field": 3
     },
     {
         "name": "Besondere Lernleistung AF1",
         "lessonsPerWeek": [3, 3, 0, 0],
-        "attributes": ["noPerformerCourse", "seminarCourse"],
+        "attributes": ["seminarCourse", "noPerformerCourse"],
         "field": 1
     },
     {
         "name": "Besondere Lernleistung AF2",
         "lessonsPerWeek": [3, 3, 0, 0],
-        "attributes": ["noPerformerCourse", "seminarCourse"],
+        "attributes": ["seminarCourse", "noPerformerCourse"],
         "field": 2
     },
     {
         "name": "Besondere Lernleistung AF3",
         "lessonsPerWeek": [3, 3, 0, 0],
-        "attributes": ["noPerformerCourse", "seminarCourse"],
+        "attributes": ["seminarCourse", "noPerformerCourse"],
         "field": 3
     }
 ]

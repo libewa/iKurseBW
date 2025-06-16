@@ -12,11 +12,28 @@ struct CourseSelectionWarningView: View {
     var body: some View {
         switch validity {
         case .missingMandatoryCourses(let missing):
-            Label("Fehlende Kurse", systemImage: "xmark.circle")
-                .foregroundStyle(.red)
-            ForEach(missing, id: \.self) { courseType in
-                Text(courseType.localized())
-            }
+                if missing == [.sports] {
+                    Label("Dir fehlt der Sportkurs. Wenn du eine Sportbefreiung hast, kannst du trotzdem fortfahren.", systemImage: "exclamationmark.circle")
+                        .foregroundStyle(.orange)
+                    NavigationLink {
+                        ResultView()
+                    } label: {
+                        HStack {
+                            Text("Trotzdem weiter")
+#if os(macOS)
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .foregroundStyle(.secondary)
+#endif
+                        }
+                    }
+                } else {
+                    Label("Fehlende Kurse", systemImage: "xmark.circle")
+                        .foregroundStyle(.red)
+                    ForEach(missing, id: \.self) { courseType in
+                        Text(courseType.localized())
+                    }
+                }
         case .notEnoughCourses:
             Label(
                 "Du brauchst mindestens 42 Kurse (Semester eines Faches)", systemImage: "xmark.circle"

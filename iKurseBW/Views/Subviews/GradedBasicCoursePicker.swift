@@ -35,9 +35,13 @@ struct GradedBasicCoursePicker: View {
             }
             if let forced = courseSelection.forcedBasicGradings[safe: index] {
                 if forced == .german {
-                    Text(german).tag(german)
+                    ForEach(courseSelection.availableCourses.filter({$0.attributes.contains(.german) && $0.isAvailableForOralGrading(performers: courseSelection.performerCourses)})) { course in
+                        Text(course.name).tag(course.name)
+                    }
                 } else if forced == .math {
-                    Text(math).tag(math)
+                    ForEach(courseSelection.availableCourses.filter({$0.attributes.contains(.math) && $0.isAvailableForOralGrading(performers: courseSelection.performerCourses)})) { course in
+                        Text(course.name).tag(course.name)
+                    }
                 } else if forced == .social {
                     ForEach(
                         courseSelection.availableCourses.filter({

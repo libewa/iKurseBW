@@ -21,14 +21,14 @@ struct GreetingView: View {
                 Hallo, und willkommen bei iKurseBW!
                 Diese App hilft dir bei der Wahl deiner Kurse für die Kursstufe des allgemeinbildenden Gymnasiums (Klasse 11 und 12 oder 12 und 13).
 
-                Die App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub oder per E-Mail.
+                Die App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub.
                 Bitte beachte, dass die App keine offizielle App des Kultusministeriums ist und daher keine Garantie für die Richtigkeit der Informationen gegeben werden kann.
                 """
             )
             Link(
                 destination: URL(string: "https://github.com/libewa/iKurseBW")!
             ) {
-                Label("App-Quellcode auf GitHub", systemImage: "network")
+                Label("App-Quellcode und Issue-Tracker auf GitHub", systemImage: "network")
             }
             Link(
                 destination: URL(

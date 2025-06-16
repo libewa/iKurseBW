@@ -30,12 +30,21 @@ struct Course: Codable, Equatable, Hashable, Identifiable {
     }
 
     private var oralGradingAvailable: Bool {
+        if self.attributes.contains(.seminarCourse) { return true }
         for e in lessonsPerWeek {
             if e < 1 {
                 return false
             }
         }
         return true
+    }
+    var mustBeUnique: Bool {
+        return !(
+            self.attributes.contains(.noPerformerCourse) ||
+            self.attributes.contains(.foreignLanguage) ||
+            self.attributes.contains(.science) ||
+            self.attributes.contains(.newScience)
+        )
     }
 
     func isValidPerformerCourse(performers: [Course?]) -> Bool {

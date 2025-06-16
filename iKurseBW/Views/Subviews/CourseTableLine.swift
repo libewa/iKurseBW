@@ -14,9 +14,19 @@ struct CourseTableLine: View {
             Text(course.name)
             Spacer()
             if selected == .performer {
-                Label("Leistungsfach", systemImage: "graduationcap.fill").tag(CourseGradingType.performer).labelStyle(.iconOnly)
+                Button {
+                } label: {
+                    Label("Leistungsfach", systemImage: "graduationcap.fill")
+                        .tag(CourseGradingType.performer).labelStyle(.iconOnly)
+                }.disabled(true)
             } else if selected == .gradedBasic {
-                Label("Basisfach mündlich geprüft", systemImage: "inset.filled.rectangle.and.person.filled").tag(CourseGradingType.gradedBasic).labelStyle(.iconOnly)
+                Button {
+                } label: {
+                    Label(
+                        "Basisfach mündlich geprüft",
+                        systemImage: "inset.filled.rectangle.and.person.filled"
+                    ).tag(CourseGradingType.gradedBasic).labelStyle(.iconOnly)
+                }.disabled(true)
             } else {
                 Button {
                     withAnimation {
@@ -29,31 +39,55 @@ struct CourseTableLine: View {
                 } label: {
                     HStack {
                         if selected == .basic {
-                            Label("Basisfach", systemImage: "book.closed.fill").tag(CourseGradingType.basic).labelStyle(.iconOnly)
+                            Label("Basisfach", systemImage: "book.closed.fill")
+                                .tag(CourseGradingType.basic).labelStyle(
+                                    .iconOnly
+                                )
                         } else {
-                            Label("Nicht gewählt", systemImage: "slash.circle").tag(CourseGradingType.none).labelStyle(.iconOnly)
+                            Label("Nicht gewählt", systemImage: "slash.circle")
+                                .tag(CourseGradingType.none).labelStyle(
+                                    .iconOnly
+                                )
                         }
                     }
                 }
                 .buttonStyle(.bordered)
                 .disabled(
-                    courseSelection.availableCourses.filter { $0.attributes.contains(course.attributes[0]) }.count == 1
+                    (!courseSelection.allSelectedCourses.filter {
+                        $0.attributes.contains(course.attributes[0]) && !$0.attributes.contains(.inDepthCourse)
+                    }.isEmpty && course.mustBeUnique && selected == .none)
+                        || locked
                 )
             }
-            if courseSelection.performerCourses.contains(where: { $0?.name == course.name }) {
-                Text("5 5 5 5", comment: "The number of lessons per week for performer courses")
-                    .font(.system(size: 12, weight: .bold, design: .monospaced))
+            if courseSelection.performerCourses.contains(where: {
+                $0?.name == course.name
+            }) {
+                Text(
+                    "5 5 5 5",
+                    comment:
+                        "The number of lessons per week for performer courses"
+                )
+                .font(.system(size: 12, weight: .bold, design: .monospaced))
             } else {
-                Text(verbatim: "\(course.lessonsPerWeek[0]) \(course.lessonsPerWeek[1]) \(course.lessonsPerWeek[2]) \(course.lessonsPerWeek[3])")
-                    .font(.system(size: 12, weight: .bold, design: .monospaced))
+                Text(
+                    verbatim:
+                        "\(course.lessonsPerWeek[0]) \(course.lessonsPerWeek[1]) \(course.lessonsPerWeek[2]) \(course.lessonsPerWeek[3])"
+                )
+                .font(.system(size: 12, weight: .bold, design: .monospaced))
             }
         }
         .onAppear {
-            if courseSelection.performerCourses.contains(where: { $0?.name == course.name }) {
+            if courseSelection.performerCourses.contains(where: {
+                $0?.name == course.name
+            }) {
                 selected = .performer
-            } else if courseSelection.gradedBasicCourses.contains(where: { $0?.name == course.name }) {
+            } else if courseSelection.gradedBasicCourses.contains(where: {
+                $0?.name == course.name
+            }) {
                 selected = .gradedBasic
-            } else if courseSelection.basicCourses.contains(where: { $0.name == course.name }) {
+            } else if courseSelection.basicCourses.contains(where: {
+                $0.name == course.name
+            }) {
                 selected = .basic
             }
         }
@@ -64,7 +98,9 @@ struct CourseTableLine: View {
                         courseSelection.basicCourses.append(course)
                     }
                 } else {
-                    courseSelection.basicCourses.removeAll(where: { $0.name == course.name })
+                    courseSelection.basicCourses.removeAll(where: {
+                        $0.name == course.name
+                    })
                 }
             }
         }
@@ -73,6 +109,15 @@ struct CourseTableLine: View {
 }
 
 #Preview {
-    CourseTableLine(course: Course(name: "Mathematik", lessonsPerWeek: [3,3,3,3], attributes: [.math], field: .science), selected: .performer, locked: false)
-        .environment(CourseSelection())
+    CourseTableLine(
+        course: Course(
+            name: "Mathematik",
+            lessonsPerWeek: [3, 3, 3, 3],
+            attributes: [.math],
+            field: .science
+        ),
+        selected: .performer,
+        locked: false
+    )
+    .environment(CourseSelection())
 }
