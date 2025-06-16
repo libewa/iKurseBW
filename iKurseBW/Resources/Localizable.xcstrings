@@ -2,7 +2,15 @@
   "sourceLanguage" : "de",
   "strings" : {
     "%lld Kurse gwählt" : {
+      "comment" : "Shown above the list of courses, parameter inserts the number of selected course semesters",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Kurse gwählt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12,7 +20,15 @@
       }
     },
     "%lld Kurse verfügbar" : {
+      "comment" : "Shown next to the file picker, to let the user confirm the import, parameter shows the number of available courses (elements in the JSON)",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Kurse verfügbar"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21,12 +37,16 @@
         }
       }
     },
-    "5 5 5 5" : {
-      "comment" : "The number of lessons per week for performer courses",
-      "shouldTranslate" : false
-    },
     "Alle benötigten Kurse ausgewählt!" : {
+      "comment" : "Shows above the Continue button when enough courses have been selected.",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle benötigten Kurse ausgewählt!"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35,18 +55,16 @@
         }
       }
     },
-    "App-Quellcode und Issue-Tracker auf GitHub" : {
+    "Aufgabenfeld 1" : {
+      "comment" : "The course category with German, foreign languages, and the Arts classes",
+      "extractionState" : "manual",
       "localizations" : {
-        "en" : {
+        "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "App source code and issue tracker on GitHub"
+            "value" : "Aufgabenfeld 1 (Sprache/Kunst)"
           }
-        }
-      }
-    },
-    "Aufgabenfeld 1 (Sprache/Kunst)" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55,8 +73,16 @@
         }
       }
     },
-    "Aufgabenfeld 2 (Gesellschaft)" : {
+    "Aufgabenfeld 2" : {
+      "comment" : "The course category with the classes with society as their main topic",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufgabenfeld 2 (Gesellschaft)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -65,8 +91,16 @@
         }
       }
     },
-    "Aufgabenfeld 3 (Mathematik/Naturwissenschaften)" : {
+    "Aufgabenfeld 3" : {
+      "comment" : "The course category with sciences (including CS) and Math",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufgabenfeld 3 (Mathematik/Naturwissenschaften)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76,7 +110,15 @@
       }
     },
     "Basisfach" : {
+      "comment" : "Base course, taught at 2-3 lessons per week, not part of the final exams",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basisfach"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -86,7 +128,15 @@
       }
     },
     "Basisfach mündlich geprüft" : {
+      "comment" : "One of the two base courses selected by the student to be part of the final exams",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basisfach mündlich geprüft"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -97,7 +147,14 @@
     },
     "Bitte auswählen" : {
       "comment" : "The default picker element when no course is selected",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte auswählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -106,18 +163,16 @@
         }
       }
     },
-    "Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl." : {
+    "Datei auswählen" : {
+      "comment" : "The button opening the file picker",
+      "extractionState" : "manual",
       "localizations" : {
-        "en" : {
+        "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please select a file containing available courses, or use the default one."
+            "value" : "Datei auswählen"
           }
-        }
-      }
-    },
-    "Datei auswählen" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -126,18 +181,33 @@
         }
       }
     },
-    "Deine Kurswahl" : {
+    "dateiAuswahlErklärung" : {
+      "comment" : "The explanation above the file picker",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your selected courses"
+            "value" : "Please select a file containing available courses, or use the default one."
           }
         }
       }
     },
     "Deutsch" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deutsch"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -146,28 +216,16 @@
         }
       }
     },
-    "Dir fehlt der Sportkurs. Wenn du eine Sportbefreiung hast, kannst du trotzdem fortfahren." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You are missing a sports course. If you have been explicitly exempt from sports class, you can continue anyway."
-          }
-        }
-      }
-    },
-    "Du brauchst mindestens 42 Kurse (Semester eines Faches)" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You need a minimum of 42 courses (one class for one semester)"
-          }
-        }
-      }
-    },
     "Ein Fehler ist aufgetreten" : {
+      "comment" : "The title of an alert presented when an error occurs while importing a file. The error itself is localized elsewhere.",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Fehler ist aufgetreten"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -177,7 +235,14 @@
       }
     },
     "Erdkunde" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erdkunde"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -186,18 +251,34 @@
         }
       }
     },
-    "Es werden mindestens 44 Kurse empfohlen. Mit 42 Kursen besteht das Risiko, bei einer Sportverletzung oder längerer Krankheit nicht zum Abitur zugelassen zu werden." : {
+    "Ergebnis Überschrift" : {
+      "comment" : "The title of the final view, showing the selected courses only",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Kurswahl"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A minimum of 44 courses is recommended. With only 42 courses you risk not being allowed into the final exams in case of an injury or prolonged sickness."
+            "value" : "Your selected courses"
           }
         }
       }
     },
     "Fehlende Kurse" : {
+      "comment" : "Shown above the list of missing courses",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehlende Kurse"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -207,7 +288,14 @@
       }
     },
     "Fremdsprache" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fremdsprache"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -216,8 +304,33 @@
         }
       }
     },
-    "Gemeinschaftskunde" : {
+    "Gefährlich wenige Kurse" : {
+      "comment" : "Shown above the „Continue Anyway“ button if 42 courses have been selected. This is allowed but not recommended at all.",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es werden mindestens 44 Kurse empfohlen. Mit 42 Kursen besteht das Risiko, bei einer Sportverletzung oder längerer Krankheit nicht zum Abitur zugelassen zu werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A minimum of 44 courses is recommended. With only 42 courses you risk not being allowed into the final exams in case of an injury or prolonged sickness."
+          }
+        }
+      }
+    },
+    "Gemeinschaftskunde" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemeinschaftskunde"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -227,7 +340,14 @@
       }
     },
     "Geprüfte Basiskurse" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geprüfte Basiskurse"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -236,8 +356,33 @@
         }
       }
     },
-    "Geschichte" : {
+    "Geprüfte Basiskurse Text" : {
+      "comment" : "The explanation shown above the two pickers for the graded base courses",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nun wähle deine geprüften Basiskurse. Einer oder zwei können durch deine Leistungsfachwahl vorgegeben sein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Now choose your orally graded base courses. One or both of them might be dictated by your choice of high-level courses."
+          }
+        }
+      }
+    },
+    "Geschichte" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geschichte"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -247,7 +392,14 @@
       }
     },
     "Gesellschaftswissenschaften" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesellschaftswissenschaften"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -256,18 +408,51 @@
         }
       }
     },
-    "Hallo, und willkommen bei iKurseBW!\nDiese App hilft dir bei der Wahl deiner Kurse für die Kursstufe des allgemeinbildenden Gymnasiums (Klasse 11 und 12 oder 12 und 13).\n\nDie App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub.\nBitte beachte, dass die App keine offizielle App des Kultusministeriums ist und daher keine Garantie für die Richtigkeit der Informationen gegeben werden kann." : {
+    "githubLink" : {
+      "comment" : "Link to the GitHub-Repository",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Quellcode und Issue-Tracker auf GitHub"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hello, and welcome to iKurseBW!\nThis app helps you choose your courses for the „Kursstufe des allgemeinbildenden Gymnasiums“ (roughly equivalent to high school, grades 11 and 12 or 12 and 13).\n\nThe app is still in development, so please report issues on GitHub.\nPlease note that this is not an official tool, and no guarantee is given for the correctness of the information."
+            "value" : "App source code and issue tracker on GitHub"
+          }
+        }
+      }
+    },
+    "KM-Info Link" : {
+      "comment" : "Link to the official Ministry of Culture website (German only)",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offizielle Informationen des Kultusministeriums"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Official Ministry of Culture info (German only)"
           }
         }
       }
     },
     "Kunst" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunst"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -277,7 +462,14 @@
       }
     },
     "Kunst oder Musik" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunst oder Musik"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -287,7 +479,14 @@
       }
     },
     "Kunst, Musik oder Sport" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunst, Musik oder Sport"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -297,7 +496,14 @@
       }
     },
     "Leistungsfach" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leistungsfach"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -307,7 +513,15 @@
       }
     },
     "Leistungskurse (%lld/3)" : {
+      "comment" : "Title of the selection view for the n-th performer course",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leistungskurse (%lld/3)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -317,7 +531,14 @@
       }
     },
     "Mathematik" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mathematik"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -327,7 +548,15 @@
       }
     },
     "Mündlich geprüfter Basiskurs %lld" : {
+      "comment" : "Title of the picker for the n-th graded base course.",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mündlich geprüfter Basiskurs %lld"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -337,7 +566,14 @@
       }
     },
     "Naturwissenschaft" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naturwissenschaft"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -346,8 +582,33 @@
         }
       }
     },
-    "Nicht gewählt" : {
+    "Nicht genug Kurse" : {
+      "comment" : "Shown when all required courses have been selected, but the sum of course semesters is too low.",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du brauchst mindestens 42 Kurse (Semester eines Faches)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You need a minimum of 42 courses (one class for one semester)"
+          }
+        }
+      }
+    },
+    "Nicht gewählt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht gewählt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -356,28 +617,33 @@
         }
       }
     },
-    "Nun wähle deine geprüften Basiskurse. Einer oder zwei können durch deine Leistungsfachwahl vorgegeben sein." : {
+    "nurSportkursFehlt" : {
+      "comment" : "Shown above the „Continue Anyway“ button when all courses except for the sports course are selected, but there are enough semesters. This is allowed if a doctor’s note is provided.",
+      "extractionState" : "manual",
       "localizations" : {
-        "en" : {
+        "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Now choose your orally graded base courses. One or both of them might be dictated by your choice of high-level courses."
+            "value" : "Dir fehlt der Sportkurs. Wenn du eine Sportbefreiung hast, kannst du trotzdem fortfahren."
           }
-        }
-      }
-    },
-    "Offizielle Informationen des Kultusministeriums" : {
-      "localizations" : {
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Official Ministry of Culture info"
+            "value" : "You are missing a sports course. If you have been explicitly exempt from sports class, you can continue anyway."
           }
         }
       }
     },
     "OK" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -387,7 +653,14 @@
       }
     },
     "Religion/Ethik" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Religion/Ethik"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -397,7 +670,14 @@
       }
     },
     "Seminarkurs" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seminarkurs"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -407,7 +687,14 @@
       }
     },
     "Sport" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sport"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -417,7 +704,14 @@
       }
     },
     "Summe" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summe"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -427,7 +721,14 @@
       }
     },
     "Trotzdem weiter" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trotzdem weiter"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,7 +738,15 @@
       }
     },
     "Verbleibende Kurse wählen" : {
+      "comment" : "Title of the view to select ungraded base courses.",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbleibende Kurse wählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -447,7 +756,14 @@
       }
     },
     "Vertiefungskurs" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vertiefungskurs"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -456,8 +772,16 @@
         }
       }
     },
-    "Wähle deinen %lld. Leistungskurs. Die Leistungskurse werden im Abitur schriftlich geprüft und während der gesamten Kursstufe mit 5 Wochenstunden unterrichtet. Deine Leistungskurswahl kann auch die Wahl deiner mündlich geprüften Basiskurse beeinflussen." : {
+    "wähleLeistungskursErklärung" : {
+      "comment" : "Shown above the performer course selectors",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle deinen %lld. Leistungskurs. Die Leistungskurse werden im Abitur schriftlich geprüft und während der gesamten Kursstufe mit 5 Wochenstunden unterrichtet. Deine Leistungskurswahl kann auch die Wahl deiner mündlich geprüften Basiskurse beeinflussen."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -467,7 +791,14 @@
       }
     },
     "Wahlpflichtfach" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wahlpflichtfach"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -477,7 +808,14 @@
       }
     },
     "Weiter" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -487,7 +825,14 @@
       }
     },
     "Weiter zur LK-Wahl" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter zur LK-Wahl"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -497,7 +842,14 @@
       }
     },
     "Weitere Kurse wählen" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weitere Kurse wählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -506,8 +858,34 @@
         }
       }
     },
-    "Willkommen bei iKurseBW!" : {
+    "willkommen Text" : {
+      "comment" : "A long text shown when the user first starts up the app.",
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hallo, und willkommen bei iKurseBW!\nDiese App hilft dir bei der Wahl deiner Kurse für die Kursstufe des allgemeinbildenden Gymnasiums (Klasse 11 und 12 oder 12 und 13).\n\nDie App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub.\nBitte beachte, dass die App keine offizielle App des Kultusministeriums ist und daher keine Garantie für die Richtigkeit der Informationen gegeben werden kann."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hello, and welcome to iKurseBW!\nThis app helps you choose your courses for the „Kursstufe des allgemeinbildenden Gymnasiums“ (roughly equivalent to high school, grades 11 and 12 or 12 and 13).\n\nThe app is still in development, so please report issues on GitHub.\nPlease note that this is not an official tool, and no guarantee is given for the correctness of the information."
+          }
+        }
+      }
+    },
+    "Willkommen Überschrift" : {
+      "comment" : "Title of the first view",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Willkommen bei iKurseBW!"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -517,7 +895,14 @@
       }
     },
     "Zweite Fremdsprache oder Naturwissenschaft" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zweite Fremdsprache oder Naturwissenschaft"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",

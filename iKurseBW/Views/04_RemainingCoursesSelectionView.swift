@@ -14,30 +14,30 @@ struct RemainingCoursesSelectionView: View {
             Section {
                 //TODO: Have tvOS scroll up here even though it's not a button (low priority, just for fun)
                 CourseSelectionWarningView(validity: courseSelection.validity)
-                Text("\(courseSelection.totalSemesters) Kurse gwählt")
+                Text(.kurseGwählt(courseSelection.totalSemesters))
                 HStack {
-                    Text("Summe")
+                    Text(.summe)
                     Spacer()
                     Text(verbatim: "\(courseSelection.lessonsPerWeek[0]) \(courseSelection.lessonsPerWeek[1]) \(courseSelection.lessonsPerWeek[2]) \(courseSelection.lessonsPerWeek[3])")
                     .font(.system(size: 12, weight: .bold, design: .monospaced))
                 }
             }
-            Section("Aufgabenfeld 1 (Sprache/Kunst)") {
+            Section(.aufgabenfeld1) {
                 ForEach(courseSelection.languageCourses) { course in
                     CourseTableLine(course: course, locked: false)
                 }
             }
-            Section("Aufgabenfeld 2 (Gesellschaft)") {
+            Section(.aufgabenfeld2) {
                 ForEach(courseSelection.socialCourses) { course in
                     CourseTableLine(course: course, locked: false)
                 }
             }
-            Section("Aufgabenfeld 3 (Mathematik/Naturwissenschaften)") {
+            Section(.aufgabenfeld3) {
                 ForEach(courseSelection.scienceCourses) { course in
                     CourseTableLine(course: course, locked: false)
                 }
             }
-            Section("Sport") {
+            Section(.sport) {
                 ForEach(courseSelection.sportsCourses) { course in
                     CourseTableLine(course: course, locked: false)
                 }
@@ -46,7 +46,7 @@ struct RemainingCoursesSelectionView: View {
         .onAppear {
             courseSelection.addMissingUnambiguousCourses()
         }
-        .navigationTitle("Weitere Kurse wählen")
+        .navigationTitle(.weitereKurseWählen)
     }
 }
 

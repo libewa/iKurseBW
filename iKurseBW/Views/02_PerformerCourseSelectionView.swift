@@ -14,8 +14,7 @@ struct PerformerCourseSelectionView: View {
     let previousSelection: Course?
     var body: some View {
         List {
-            Text(
-                "Wähle deinen \(index + 1). Leistungskurs. Die Leistungskurse werden im Abitur schriftlich geprüft und während der gesamten Kursstufe mit 5 Wochenstunden unterrichtet. Deine Leistungskurswahl kann auch die Wahl deiner mündlich geprüften Basiskurse beeinflussen."
+            Text(.wähleLeistungskursErklärung(index + 1)
             )
             ForEach(
                 courseSelection.availablePerformerCourses
@@ -54,7 +53,7 @@ struct PerformerCourseSelectionView: View {
                 courseSelection.performerCourses[index - 1] = previous
             }
         }
-        .navigationTitle("Leistungskurse (\(index + 1)/3)")
+        .navigationTitle(.leistungskurse3(index + 1))
     }
 }
 

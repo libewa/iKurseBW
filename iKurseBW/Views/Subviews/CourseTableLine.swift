@@ -16,14 +16,14 @@ struct CourseTableLine: View {
             if selected == .performer {
                 Button {
                 } label: {
-                    Label("Leistungsfach", systemImage: "graduationcap.fill")
+                    Label(.leistungsfach, systemImage: "graduationcap.fill")
                         .tag(CourseGradingType.performer).labelStyle(.iconOnly)
                 }.disabled(true)
             } else if selected == .gradedBasic {
                 Button {
                 } label: {
                     Label(
-                        "Basisfach mündlich geprüft",
+                        .basisfachMündlichGeprüft,
                         systemImage: "inset.filled.rectangle.and.person.filled"
                     ).tag(CourseGradingType.gradedBasic).labelStyle(.iconOnly)
                 }.disabled(true)
@@ -39,12 +39,12 @@ struct CourseTableLine: View {
                 } label: {
                     HStack {
                         if selected == .basic {
-                            Label("Basisfach", systemImage: "book.closed.fill")
+                            Label(.basisfach, systemImage: "book.closed.fill")
                                 .tag(CourseGradingType.basic).labelStyle(
                                     .iconOnly
                                 )
                         } else {
-                            Label("Nicht gewählt", systemImage: "slash.circle")
+                            Label(.nichtGewählt, systemImage: "slash.circle")
                                 .tag(CourseGradingType.none).labelStyle(
                                     .iconOnly
                                 )
@@ -62,11 +62,7 @@ struct CourseTableLine: View {
             if courseSelection.performerCourses.contains(where: {
                 $0?.name == course.name
             }) {
-                Text(
-                    "5 5 5 5",
-                    comment:
-                        "The number of lessons per week for performer courses"
-                )
+                Text(verbatim: "5 5 5 5")
                 .font(.system(size: 12, weight: .bold, design: .monospaced))
             } else {
                 Text(

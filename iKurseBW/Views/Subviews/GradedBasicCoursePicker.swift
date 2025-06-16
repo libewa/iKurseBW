@@ -23,14 +23,11 @@ struct GradedBasicCoursePicker: View {
     }
     var body: some View {
         Picker(
-            "Mündlich geprüfter Basiskurs \(index + 1)",
+            .mündlichGeprüfterBasiskurs(index + 1),
             selection: $selectedCourse
         ) {
             if selectedCourse == "" {
-                Text(
-                    "Bitte auswählen",
-                    comment:
-                        "The default picker element when no course is selected"
+                Text(.bitteAuswählen
                 ).tag("").disabled(true)
             }
             if let forced = courseSelection.forcedBasicGradings[safe: index] {

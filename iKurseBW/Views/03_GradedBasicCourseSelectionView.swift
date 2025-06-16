@@ -12,14 +12,13 @@ struct GradedBasicCourseSelectionView: View {
     let lastPerformerCourse: Course
     var body: some View {
         Form {
-            Text(
-                "Nun wähle deine geprüften Basiskurse. Einer oder zwei können durch deine Leistungsfachwahl vorgegeben sein."
+            Text(.geprüfteBasiskurseText
             )
             GradedBasicCoursePicker(index: 0)
             GradedBasicCoursePicker(index: 1)
             NavigationLink(
-                "Verbleibende Kurse wählen",
-                destination: RemainingCoursesSelectionView()
+                .verbleibendeKurseWählen,
+                destination: {RemainingCoursesSelectionView()}
             )
             .disabled(
                 courseSelection.gradedBasicCourses.contains(nil)
@@ -28,7 +27,7 @@ struct GradedBasicCourseSelectionView: View {
         .onAppear {
             courseSelection.performerCourses[2] = lastPerformerCourse
         }
-        .navigationTitle("Geprüfte Basiskurse")
+        .navigationTitle(.geprüfteBasiskurse)
         #if os(macOS)
             .padding()
         #endif

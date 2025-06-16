@@ -31,43 +31,43 @@ enum CourseAttribute: String, Codable {
     func localized() -> String {
         switch self {
             case .german:
-                return String(localized: "Deutsch")
+                return String(localized: .deutsch)
             case .science:
-                return String(localized: "Naturwissenschaft")
+                return String(localized: .naturwissenschaft)
             case .foreignLanguage:
-                return String(localized: "Fremdsprache")
+                return String(localized: .fremdsprache)
             case .math:
-                return String(localized: "Mathematik")
+                return String(localized: .mathematik)
             case .newScience:
                 return String(
-                    localized: "Zweite Fremdsprache oder Naturwissenschaft"
+                    localized: .zweiteFremdspracheOderNaturwissenschaft
                 )
             case .socialStudies:
-                return String(localized: "Gemeinschaftskunde")
+                return String(localized: .gemeinschaftskunde)
             case .geography:
-                return String(localized: "Erdkunde")
+                return String(localized: .erdkunde)
             case .history:
-                return String(localized: "Geschichte")
+                return String(localized: .geschichte)
             case .religion:
-                return String(localized: "Religion/Ethik")
+                return String(localized: .religionEthik)
             case .art:
-                return String(localized: "Kunst")
+                return String(localized: .kunst)
             case .sports:
-                return String(localized: "Sport")
+                return String(localized: .sport)
                 
             case .social:
-                return String(localized: "Gesellschaftswissenschaften")
+                return String(localized: .gesellschaftswissenschaften)
             case .artMusicSports:
-                return String(localized: "Kunst, Musik oder Sport")
+                return String(localized: .kunstMusikOderSport)
             case .artMusic:
-                return String(localized: "Kunst oder Musik")
+                return String(localized: .kunstOderMusik)
                 
             case .noPerformerCourse:
-                return String(localized: "Wahlpflichtfach")
+                return String(localized: .wahlpflichtfach)
             case .seminarCourse:
-                return String(localized: "Seminarkurs")
+                return String(localized: .seminarkurs)
             case .inDepthCourse:
-                return String(localized: "Vertiefungskurs")
+                return String(localized: .vertiefungskurs)
         }
     }
 }

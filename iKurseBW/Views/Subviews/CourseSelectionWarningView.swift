@@ -13,13 +13,13 @@ struct CourseSelectionWarningView: View {
         switch validity {
         case .missingMandatoryCourses(let missing):
                 if missing == [.sports] {
-                    Label("Dir fehlt der Sportkurs. Wenn du eine Sportbefreiung hast, kannst du trotzdem fortfahren.", systemImage: "exclamationmark.circle")
+                    Label(.nurSportkursFehlt, systemImage: "exclamationmark.circle")
                         .foregroundStyle(.orange)
                     NavigationLink {
                         ResultView()
                     } label: {
                         HStack {
-                            Text("Trotzdem weiter")
+                            Text(.trotzdemWeiter)
 #if os(macOS)
                             Spacer()
                             Image(systemName: "chevron.forward")
@@ -28,7 +28,7 @@ struct CourseSelectionWarningView: View {
                         }
                     }
                 } else {
-                    Label("Fehlende Kurse", systemImage: "xmark.circle")
+                    Label(.fehlendeKurse, systemImage: "xmark.circle")
                         .foregroundStyle(.red)
                     ForEach(missing, id: \.self) { courseType in
                         Text(courseType.localized())
@@ -36,19 +36,19 @@ struct CourseSelectionWarningView: View {
                 }
         case .notEnoughCourses:
             Label(
-                "Du brauchst mindestens 42 Kurse (Semester eines Faches)", systemImage: "xmark.circle"
+                .nichtGenugKurse, systemImage: "xmark.circle"
             )
             .foregroundStyle(.red)
         case .dangerouslyLowAmountOfCourses:
             Label(
-                "Es werden mindestens 44 Kurse empfohlen. Mit 42 Kursen besteht das Risiko, bei einer Sportverletzung oder längerer Krankheit nicht zum Abitur zugelassen zu werden.", systemImage: "exclamationmark.circle"
+                .gefährlichWenigeKurse, systemImage: "exclamationmark.circle"
             )
             .foregroundStyle(.orange)
             NavigationLink {
                 ResultView()
             } label: {
                 HStack {
-                    Text("Trotzdem weiter")
+                    Text(.trotzdemWeiter)
 #if os(macOS)
                     Spacer()
                     Image(systemName: "chevron.forward")
@@ -58,7 +58,7 @@ struct CourseSelectionWarningView: View {
             }
         default:
             Label(
-                "Alle benötigten Kurse ausgewählt!",
+                .alleBenötigtenKurseAusgewählt,
                 systemImage: "checkmark.circle"
             )
             .foregroundColor(.green)
@@ -66,7 +66,7 @@ struct CourseSelectionWarningView: View {
                 ResultView()
             } label: {
                 HStack {
-                    Text("Weiter")
+                    Text(.weiter)
 #if os(macOS)
                     Spacer()
                     Image(systemName: "chevron.forward")

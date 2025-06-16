@@ -17,57 +17,51 @@ struct GreetingView: View {
     var body: some View {
         Form {
             Text(
-                """
-                Hallo, und willkommen bei iKurseBW!
-                Diese App hilft dir bei der Wahl deiner Kurse für die Kursstufe des allgemeinbildenden Gymnasiums (Klasse 11 und 12 oder 12 und 13).
-
-                Die App ist noch in der Entwicklung, daher kann es zu Fehlern kommen. Bitte melde diese über GitHub.
-                Bitte beachte, dass die App keine offizielle App des Kultusministeriums ist und daher keine Garantie für die Richtigkeit der Informationen gegeben werden kann.
-                """
+                .willkommenText
             )
             Link(
-                destination: URL(string: "https://github.com/libewa/iKurseBW")!
+                destination: URL(string: String("https://github.com/libewa/iKurseBW"))!
             ) {
-                Label("App-Quellcode und Issue-Tracker auf GitHub", systemImage: "network")
+                Label(.githubLink, systemImage: "network")
             }
             Link(
                 destination: URL(
                     string:
-                        "https://km.baden-wuerttemberg.de/de/schule/gymnasium/abitur-und-oberstufe"
+                        String("https://km.baden-wuerttemberg.de/de/schule/gymnasium/abitur-und-oberstufe")
                 )!
             ) {
                 Label(
-                    "Offizielle Informationen des Kultusministeriums",
+                    .kmInfoLink,
                     systemImage: "questionmark.circle"
                 )
             }
             #if !os(tvOS)
-                Text(
-                    "Bitte wähle eine Datei mit verfügbaren Kursen, oder benutze die Standardauswahl."
-                )
+                Text(.dateiAuswahlErklärung)
 
                 HStack {
                     Button(
-                        "Datei auswählen",
+                        .dateiAuswählen,
                         systemImage: "arrow.down.document"
                     ) {
                         fileImportPresented = true
                     }
                     Spacer()
                     Text(
-                        "\(courseSelection.availableCourses.count) Kurse verfügbar"
+                        .kurseVerfügbar(courseSelection.availableCourses.count)
                     )
                 }
-            #endif
+#endif
             NavigationLink(
-                "Weiter zur LK-Wahl",
-                destination: PerformerCourseSelectionView(
-                    index: 0,
-                    previousSelection: nil
-                )
+                .weiterZurLkWahl,
+                destination: {
+                    PerformerCourseSelectionView(
+                        index: 0,
+                        previousSelection: nil
+                    )
+                }
             )
         }
-        .navigationTitle("Willkommen bei iKurseBW!")
+        .navigationTitle(.willkommenÜberschrift)
         #if !os(macOS)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -100,11 +94,11 @@ struct GreetingView: View {
                 }
             }
             .alert(
-                "Ein Fehler ist aufgetreten",
+                .einFehlerIstAufgetreten,
                 isPresented: $showError,
                 presenting: error,
                 actions: { _ in
-                    Button("OK", role: .cancel) {}
+                    Button(.ok, role: .cancel) {}
                 },
                 message: { error in
                     Text(error.localizedDescription)
